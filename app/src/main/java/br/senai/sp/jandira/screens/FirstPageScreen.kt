@@ -25,12 +25,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import br.senai.sp.jandira.R
 import br.senai.sp.jandira.ui.theme.BalooTammudu
 import br.senai.sp.jandira.ui.theme.Tamma
 
 @Composable
-fun FirstPageScreen() {
+fun FirstPageScreen(navController: NavController) {
 
 
     Surface (
@@ -77,7 +78,8 @@ fun FirstPageScreen() {
                         containerColor = Color(0xffE4E4E4)
                     ),
                     shape = RoundedCornerShape(10.dp),
-                    onClick = {}) {
+                    onClick = {
+                    }) {
                     Text(
                         text = stringResource(id = R.string.sign_in),
                         color = Color(0xff767676),
@@ -96,7 +98,9 @@ fun FirstPageScreen() {
                         containerColor = Color(0xff03396C)
                     ),
                     shape = RoundedCornerShape(10.dp),
-                    onClick = {}) {
+                    onClick = {
+                        navController.navigate("SignUpMethod")
+                    }) {
                     Text(
                         text = stringResource(id = R.string.sign_up),
                         color = Color(0xffFFFFFF),
@@ -113,5 +117,4 @@ fun FirstPageScreen() {
 @Preview (showBackground = true, showSystemUi = true)
 @Composable
 private fun FirstPageScreenPreview() {
-    FirstPageScreen()
 }

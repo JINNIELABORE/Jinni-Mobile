@@ -2,4 +2,7 @@
     <string name="app_name">Jinni</string>
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up</string>
+    <string name="sign_up_as">Sign up as:</string>
+    <string name="client">Client</string>
+    <string name="freelancer">Freelancer</string>
 </resources>
