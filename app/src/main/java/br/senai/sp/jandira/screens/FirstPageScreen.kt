@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.senai.sp.jandira.R
+import br.senai.sp.jandira.components.GradientButton
 import br.senai.sp.jandira.ui.theme.BalooTammudu
 import br.senai.sp.jandira.ui.theme.Tamma
 
@@ -90,25 +91,10 @@ fun FirstPageScreen(navController: NavController) {
                 }
 
                 Spacer(modifier = Modifier.height(15.dp))
-                Button(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(45.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xff03396C)
-                    ),
-                    shape = RoundedCornerShape(10.dp),
-                    onClick = {
-                        navController.navigate("SignUpMethod")
-                    }) {
-                    Text(
-                        text = stringResource(id = R.string.sign_up),
-                        color = Color(0xffFFFFFF),
-                        fontFamily = BalooTammudu,
-                        fontWeight = FontWeight.Normal,
-                        fontSize = 18.sp
-                    )
-                }
+
+                GradientButton(onClick = {
+                    navController.navigate("SignUpMethod")
+                }, text = stringResource(id = R.string.sign_up))
             }
         }
     }

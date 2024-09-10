@@ -15,6 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.senai.sp.jandira.screens.FirstPageScreen
+import br.senai.sp.jandira.screens.FreelancerSignUp
 import br.senai.sp.jandira.screens.SignUpMethodChoiceScreen
 import br.senai.sp.jandira.ui.theme.JinniTheme
 
@@ -31,7 +32,8 @@ class MainActivity : ComponentActivity() {
                     startDestination = "FirstPage"
                 ){
                     composable(route = "FirstPage") { FirstPageScreen(navController) }
-                    composable(route = "SignUpMethod") { SignUpMethodChoiceScreen() }
+                    composable(route = "SignUpMethod") { SignUpMethodChoiceScreen(navController) }
+                    composable(route = "FreelancerSignUp") { FreelancerSignUp() }
                 }
                 
             }
