@@ -5,4 +5,14 @@
     <string name="sign_up_as">Sign up as:</string>
     <string name="client">Client</string>
     <string name="freelancer">Freelancer</string>
+    <string name="get_started">Let\'s start!</string>
+    <string name="get_started_text">Adding your infos, please, insert your full name, email and password, then we\'ll send you a confirmation code</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="continue_">Continue</string>
+    <string name="add_cnpj">Add your CNPJ</string>
+    <string name="add_cnpj_text">Insert your cnpj bellow, then, we\'ll verify it for you!</string>
+    <string name="cnpj">CNPJ</string>
 </resources>

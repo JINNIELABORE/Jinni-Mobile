@@ -14,7 +14,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import br.senai.sp.jandira.screens.AddCnpj
+import br.senai.sp.jandira.screens.ClientSignUp
 import br.senai.sp.jandira.screens.FirstPageScreen
+import br.senai.sp.jandira.screens.FreelancerSignUp
 import br.senai.sp.jandira.screens.SignUpMethodChoiceScreen
 import br.senai.sp.jandira.ui.theme.JinniTheme
 
@@ -31,7 +34,10 @@ class MainActivity : ComponentActivity() {
                     startDestination = "FirstPage"
                 ){
                     composable(route = "FirstPage") { FirstPageScreen(navController) }
-                    composable(route = "SignUpMethod") { SignUpMethodChoiceScreen() }
+                    composable(route = "SignUpMethod") { SignUpMethodChoiceScreen(navController) }
+                    composable(route = "FreelancerSignUp") { FreelancerSignUp() }
+                    composable(route = "ClientSignUp") { ClientSignUp(navController) }
+                    composable(route = "AddCnpj") { AddCnpj() }
                 }
                 
             }
