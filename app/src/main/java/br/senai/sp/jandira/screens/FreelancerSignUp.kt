@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.screens
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
@@ -23,13 +25,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import br.senai.sp.jandira.R
 import br.senai.sp.jandira.components.GradientButton
 import br.senai.sp.jandira.ui.theme.BalooTammudu
 import br.senai.sp.jandira.ui.theme.Poppins
 
 @Composable
-fun FreelancerSignUp() {
+fun FreelancerSignUp(navController: NavController) {
     
     var freelancerName = remember {
         mutableStateOf("")
@@ -59,13 +62,17 @@ fun FreelancerSignUp() {
         ){
             
             Row (
-                modifier = Modifier.fillMaxWidth().padding(top = 70.dp, start = 30.dp)
+                modifier = Modifier.fillMaxWidth().padding(top = 65.dp, start = 25.dp)
             ){
-                Icon(
-                    imageVector = Icons.Outlined.ArrowBack,
-                    contentDescription = "seta",
-                    tint = Color(0xff011F4B)
-                )
+                IconButton(onClick = {
+                    navController.navigate("SignUpMethod")
+                }) {
+                    Icon(
+                        imageVector = Icons.Outlined.ArrowBack,
+                        contentDescription = "seta",
+                        tint = Color(0xff011F4B)
+                    )
+                }
             }
 
             Column (
@@ -85,7 +92,7 @@ fun FreelancerSignUp() {
 
                     Text(
                         text = stringResource(id = R.string.get_started_text),
-                        fontSize = 14.sp,
+                        fontSize = 12.sp,
                         fontFamily = Poppins,
                         color = Color(0xff6F6F6F))
                 }
@@ -200,8 +207,9 @@ fun FreelancerSignUp() {
 
                 Column (
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 60.dp)
+                        .fillMaxSize()
+                        .padding(horizontal = 60.dp, vertical = 35.dp),
+                    verticalArrangement = Arrangement.Bottom
                 ){
 
                     GradientButton(onClick = {
@@ -217,11 +225,4 @@ fun FreelancerSignUp() {
 
 
     }
-}
-
-
-@Preview (showBackground = true, showSystemUi = true)
-@Composable
-private fun FreelancerSignUpPrev() {
-    FreelancerSignUp()
 }

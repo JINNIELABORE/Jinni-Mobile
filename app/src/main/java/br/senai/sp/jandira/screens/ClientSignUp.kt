@@ -9,6 +9,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
@@ -19,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -59,13 +61,21 @@ fun ClientSignUp(navController: NavController) {
         ){
 
             Row (
-                modifier = Modifier.fillMaxWidth().padding(top = 70.dp, start = 30.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 65.dp, start = 30.dp)
             ){
-                Icon(
-                    imageVector = Icons.Outlined.ArrowBack,
-                    contentDescription = "seta",
-                    tint = Color(0xff011F4B)
-                )
+
+                IconButton(onClick = {
+                    navController.navigate("SignUpMethod")
+                }) {
+                    Icon(
+                        imageVector = Icons.Outlined.ArrowBack,
+                        contentDescription = "seta",
+                        tint = Color(0xff011F4B)
+                    )
+                }
+
             }
 
             Column (
@@ -85,7 +95,7 @@ fun ClientSignUp(navController: NavController) {
 
                     Text(
                         text = stringResource(id = R.string.get_started_text),
-                        fontSize = 14.sp,
+                        fontSize = 12.sp,
                         fontFamily = Poppins,
                         color = Color(0xff6F6F6F))
                 }
@@ -108,7 +118,7 @@ fun ClientSignUp(navController: NavController) {
                             Text(
                                 text = stringResource(id = R.string.name),
                                 color = Color(0xff222222),
-                                fontFamily = Poppins
+                                fontFamily = Poppins,
                             )
                         },
                         colors = OutlinedTextFieldDefaults.colors(

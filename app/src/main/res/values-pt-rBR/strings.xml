@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Jinni</string>
+    <string name="sign_in">Entrar</string>
+    <string name="sign_up">Cadastrar</string>
+    <string name="sign_up_as">Cadastrar-se como:</string>
+    <string name="client">Cliente</string>
+    <string name="freelancer">Freelancer</string>
+    <string name="get_started">Vamos começar!</string>
+    <string name="get_started_text">Adicione suas informações, por favor, insira seu nome, email e senha, então enviaremos um código de confirmação</string>
+    <string name="name">Nome</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="confirm_password">Confirmar senha</string>
+    <string name="continue_">Continuar</string>
+    <string name="add_cnpj">Adicione seu CNPJ</string>
+    <string name="add_cnpj_text">Insira seu CNPJ abaixo, então, o verificaremos para você!</string>
+    <string name="cnpj">CNPJ</string>
+</resources>

@@ -10,25 +10,30 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import br.senai.sp.jandira.R
+import br.senai.sp.jandira.components.GradientButton
 import br.senai.sp.jandira.ui.theme.BalooTammudu
 import br.senai.sp.jandira.ui.theme.Poppins
 
 @Composable
-fun AddCnpj() {
+fun AddCnpj(navController: NavController) {
 
     var cnpj = remember {
         mutableStateOf("")
@@ -45,13 +50,17 @@ fun AddCnpj() {
         ){
 
             Row (
-                modifier = Modifier.fillMaxWidth().padding(top = 70.dp, start = 30.dp)
+                modifier = Modifier.fillMaxWidth().padding(top = 65.dp, start = 30.dp)
             ){
-                Icon(
-                    imageVector = Icons.Outlined.ArrowBack,
-                    contentDescription = "seta",
-                    tint = Color(0xff011F4B)
-                )
+                IconButton(onClick = {
+                    navController.navigate("SignUpMethod")
+                }) {
+                    Icon(
+                        imageVector = Icons.Outlined.ArrowBack,
+                        contentDescription = "seta",
+                        tint = Color(0xff011F4B)
+                    )
+                }
             }
 
             Column (
@@ -95,7 +104,8 @@ fun AddCnpj() {
                             Text(
                                 text = stringResource(id = R.string.cnpj),
                                 color = Color(0xff222222),
-                                fontFamily = Poppins)
+                                fontFamily = Poppins
+                            )
                         },
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedContainerColor = Color(0xffFBFBFB),
@@ -104,10 +114,25 @@ fun AddCnpj() {
                             unfocusedBorderColor = Color(0xff6F6F6F),
                             focusedTextColor = Color(0xff222222)
 
+                        ),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Number
                         )
                     )
                 }
 
+
+                Column (
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 60.dp)
+                ){
+
+                    GradientButton(onClick = {
+                    },
+                        text = stringResource(id = R.string.continue_)
+                    )
+                }
 
 
             }

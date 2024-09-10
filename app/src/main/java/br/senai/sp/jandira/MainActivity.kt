@@ -35,9 +35,9 @@ class MainActivity : ComponentActivity() {
                 ){
                     composable(route = "FirstPage") { FirstPageScreen(navController) }
                     composable(route = "SignUpMethod") { SignUpMethodChoiceScreen(navController) }
-                    composable(route = "FreelancerSignUp") { FreelancerSignUp() }
+                    composable(route = "FreelancerSignUp") { FreelancerSignUp(navController) }
                     composable(route = "ClientSignUp") { ClientSignUp(navController) }
-                    composable(route = "AddCnpj") { AddCnpj() }
+                    composable(route = "AddCnpj") { AddCnpj(navController) }
                 }
                 
             }
