@@ -9,6 +9,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -21,13 +22,18 @@ import br.senai.sp.jandira.ui.theme.BalooTammudu
 import br.senai.sp.jandira.ui.theme.Poppins
 import br.senai.sp.jandira.viewmodel.ClientViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import br.senai.sp.jandira.model.Client
+import br.senai.sp.jandira.repository.ClientRepository
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 @Composable
-fun AddCnpj(navController: NavController) {
-
-    val clientViewModel: ClientViewModel = viewModel()
+fun AddCnpj(navController: NavController, clientViewModel: ClientViewModel) {
 
     var cnpj by remember { mutableStateOf("") }
+    val context = LocalContext.current
+    val clientRepository = ClientRepository()
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -109,12 +115,32 @@ fun AddCnpj(navController: NavController) {
                         .padding(horizontal = 60.dp)
                 ) {
 
-                    GradientButton(onClick = {
-                        if (cnpj.isNotEmpty()) {
-                            clientViewModel.addCnpj(cnpj)
-                            // Navegue para a próxima tela
-                        }
-                    },
+                    GradientButton(
+                        onClick = {
+                            if (cnpj.isNotEmpty()) {
+                                clientViewModel.addCnpj(cnpj)
+                                val client = clientViewModel.clientData.value
+
+                                clientRepository.postClient(client)
+                                    .enqueue(object : Callback<Client> {
+                                        override fun onResponse(
+                                            call: Call<Client>,
+                                            response: Response<Client>
+                                        ) {
+                                            if (response.isSuccessful) {
+                                                // Navegue para a próxima tela
+                                                navController.navigate("SuccessScreen")
+                                            } else {
+                                                // Trate o erro de resposta
+                                            }
+                                        }
+
+                                        override fun onFailure(call: Call<Client>, t: Throwable) {
+                                            // Trate a falha na chamada
+                                        }
+                                    })
+                            }
+                        },
                         text = stringResource(id = R.string.continue_)
                     )
                 }
