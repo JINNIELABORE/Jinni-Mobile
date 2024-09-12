@@ -23,7 +23,7 @@ import br.senai.sp.jandira.ui.theme.Poppins
 import br.senai.sp.jandira.viewmodel.ClientViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import br.senai.sp.jandira.model.Client
-import br.senai.sp.jandira.repository.ClientRepository
+import br.senai.sp.jandira.service.RetrofitFactory
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,7 +33,7 @@ fun AddCnpj(navController: NavController, clientViewModel: ClientViewModel) {
 
     var cnpj by remember { mutableStateOf("") }
     val context = LocalContext.current
-    val clientRepository = ClientRepository()
+    val retrofitFactory = RetrofitFactory()
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -121,24 +121,27 @@ fun AddCnpj(navController: NavController, clientViewModel: ClientViewModel) {
                                 clientViewModel.addCnpj(cnpj)
                                 val client = clientViewModel.clientData.value
 
-                                clientRepository.postClient(client)
-                                    .enqueue(object : Callback<Client> {
-                                        override fun onResponse(
-                                            call: Call<Client>,
-                                            response: Response<Client>
-                                        ) {
-                                            if (response.isSuccessful) {
-                                                // Navegue para a próxima tela
-                                                navController.navigate("SuccessScreen")
-                                            } else {
-                                                // Trate o erro de resposta
-                                            }
-                                        }
+                                // Create the service instance
+                                val clientService = retrofitFactory.createClientService()
 
-                                        override fun onFailure(call: Call<Client>, t: Throwable) {
-                                            // Trate a falha na chamada
+                                // Perform the network call
+                                clientService.postClient(client).enqueue(object : Callback<Client> {
+                                    override fun onResponse(
+                                        call: Call<Client>,
+                                        response: Response<Client>
+                                    ) {
+                                        if (response.isSuccessful) {
+                                            // Navegue para a próxima tela
+                                            navController.navigate("SuccessScreen")
+                                        } else {
+                                            // Trate o erro de resposta
                                         }
-                                    })
+                                    }
+
+                                    override fun onFailure(call: Call<Client>, t: Throwable) {
+                                        // Trate a falha na chamada
+                                    }
+                                })
                             }
                         },
                         text = stringResource(id = R.string.continue_)
