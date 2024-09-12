@@ -1,24 +1,12 @@
 package br.senai.sp.jandira.screens
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableLongStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -31,27 +19,28 @@ import br.senai.sp.jandira.R
 import br.senai.sp.jandira.components.GradientButton
 import br.senai.sp.jandira.ui.theme.BalooTammudu
 import br.senai.sp.jandira.ui.theme.Poppins
+import br.senai.sp.jandira.viewmodel.ClientViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun AddCnpj(navController: NavController) {
 
-    var cnpj = remember {
-        mutableStateOf("")
-    }
+    val clientViewModel: ClientViewModel = viewModel()
+
+    var cnpj by remember { mutableStateOf("") }
 
     Surface(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         color = Color(0xffFFFFFF)
     ) {
 
-        Column (
-            modifier = Modifier.fillMaxSize()
-        ){
+        Column(modifier = Modifier.fillMaxSize()) {
 
-            Row (
-                modifier = Modifier.fillMaxWidth().padding(top = 65.dp, start = 30.dp)
-            ){
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 65.dp, start = 30.dp)
+            ) {
                 IconButton(onClick = {
                     navController.navigate("SignUpMethod")
                 }) {
@@ -63,13 +52,9 @@ fun AddCnpj(navController: NavController) {
                 }
             }
 
-            Column (
-                modifier = Modifier.fillMaxWidth()
-            ) {
+            Column(modifier = Modifier.fillMaxWidth()) {
 
-                Column(
-                    modifier = Modifier.padding(horizontal = 35.dp)
-                ) {
+                Column(modifier = Modifier.padding(horizontal = 35.dp)) {
                     Text(
                         text = stringResource(id = R.string.add_cnpj),
                         fontSize = 32.sp,
@@ -86,16 +71,14 @@ fun AddCnpj(navController: NavController) {
                     )
                 }
 
-                Column (
+                Column(
                     modifier = Modifier
                         .padding(horizontal = 35.dp, vertical = 30.dp)
-                ){
+                ) {
 
                     OutlinedTextField(
-                        value = cnpj.value,
-                        onValueChange = {
-                            cnpj.value = it
-                        },
+                        value = cnpj,
+                        onValueChange = { cnpj = it },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 5.dp),
@@ -113,7 +96,6 @@ fun AddCnpj(navController: NavController) {
                             focusedBorderColor = Color(0xff000000),
                             unfocusedBorderColor = Color(0xff6F6F6F),
                             focusedTextColor = Color(0xff222222)
-
                         ),
                         keyboardOptions = KeyboardOptions(
                             keyboardType = KeyboardType.Number
@@ -121,24 +103,22 @@ fun AddCnpj(navController: NavController) {
                     )
                 }
 
-
-                Column (
+                Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 60.dp)
-                ){
+                ) {
 
                     GradientButton(onClick = {
+                        if (cnpj.isNotEmpty()) {
+                            clientViewModel.addCnpj(cnpj)
+                            // Navegue para a próxima tela
+                        }
                     },
                         text = stringResource(id = R.string.continue_)
                     )
                 }
-
-
             }
-
-
-
         }
     }
 }

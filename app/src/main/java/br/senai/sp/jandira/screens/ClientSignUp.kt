@@ -1,26 +1,14 @@
 package br.senai.sp.jandira.screens
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,43 +17,28 @@ import br.senai.sp.jandira.R
 import br.senai.sp.jandira.components.GradientButton
 import br.senai.sp.jandira.ui.theme.BalooTammudu
 import br.senai.sp.jandira.ui.theme.Poppins
+import br.senai.sp.jandira.viewmodel.ClientViewModel
 
 @Composable
-fun ClientSignUp(navController: NavController) {
+fun ClientSignUp(navController: NavController, clientViewModel: ClientViewModel) {
 
-    var freelancerName = remember {
-        mutableStateOf("")
-    }
-
-    var freelancerEmail = remember {
-        mutableStateOf("")
-    }
-
-    var freelancerPassword = remember {
-        mutableStateOf("")
-    }
-
-    var freelancerConfirmPassword = remember {
-        mutableStateOf("")
-    }
+    var name by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
 
     Surface(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         color = Color(0xffFFFFFF)
-
     ) {
 
-        Column (
-            modifier = Modifier.fillMaxSize()
-        ){
+        Column(modifier = Modifier.fillMaxSize()) {
 
-            Row (
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 65.dp, start = 30.dp)
-            ){
-
+            ) {
                 IconButton(onClick = {
                     navController.navigate("SignUpMethod")
                 }) {
@@ -75,16 +48,11 @@ fun ClientSignUp(navController: NavController) {
                         tint = Color(0xff011F4B)
                     )
                 }
-
             }
 
-            Column (
-                modifier = Modifier.fillMaxWidth()
-            ){
+            Column(modifier = Modifier.fillMaxWidth()) {
 
-                Column (
-                    modifier = Modifier.padding(horizontal = 35.dp)
-                ){
+                Column(modifier = Modifier.padding(horizontal = 35.dp)) {
                     Text(
                         text = stringResource(id = R.string.get_started),
                         fontSize = 32.sp,
@@ -97,19 +65,18 @@ fun ClientSignUp(navController: NavController) {
                         text = stringResource(id = R.string.get_started_text),
                         fontSize = 12.sp,
                         fontFamily = Poppins,
-                        color = Color(0xff6F6F6F))
+                        color = Color(0xff6F6F6F)
+                    )
                 }
 
-                Column (
+                Column(
                     modifier = Modifier
                         .padding(horizontal = 35.dp, vertical = 30.dp)
-                ){
+                ) {
 
                     OutlinedTextField(
-                        value = freelancerName.value,
-                        onValueChange = {
-                            freelancerName.value = it
-                        },
+                        value = name,
+                        onValueChange = { name = it },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 5.dp),
@@ -127,15 +94,12 @@ fun ClientSignUp(navController: NavController) {
                             focusedBorderColor = Color(0xff000000),
                             unfocusedBorderColor = Color(0xff6F6F6F),
                             focusedTextColor = Color(0xff222222)
-
                         )
                     )
 
                     OutlinedTextField(
-                        value = freelancerEmail.value,
-                        onValueChange = {
-                            freelancerEmail.value = it
-                        },
+                        value = email,
+                        onValueChange = { email = it },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 5.dp),
@@ -153,15 +117,12 @@ fun ClientSignUp(navController: NavController) {
                             focusedBorderColor = Color(0xff000000),
                             unfocusedBorderColor = Color(0xff6F6F6F),
                             focusedTextColor = Color(0xff222222)
-
                         )
                     )
 
                     OutlinedTextField(
-                        value = freelancerPassword.value,
-                        onValueChange = {
-                            freelancerPassword.value = it
-                        },
+                        value = password,
+                        onValueChange = { password = it },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 5.dp),
@@ -179,15 +140,12 @@ fun ClientSignUp(navController: NavController) {
                             focusedBorderColor = Color(0xff000000),
                             unfocusedBorderColor = Color(0xff6F6F6F),
                             focusedTextColor = Color(0xff222222)
-
                         )
                     )
 
                     OutlinedTextField(
-                        value = freelancerConfirmPassword.value,
-                        onValueChange = {
-                            freelancerConfirmPassword.value = it
-                        },
+                        value = confirmPassword,
+                        onValueChange = { confirmPassword = it },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 5.dp),
@@ -205,30 +163,26 @@ fun ClientSignUp(navController: NavController) {
                             focusedBorderColor = Color(0xff000000),
                             unfocusedBorderColor = Color(0xff6F6F6F),
                             focusedTextColor = Color(0xff222222)
-
                         )
                     )
 
-
                 }
 
-                Column (
+                Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 60.dp)
-                ){
+                ) {
 
                     GradientButton(onClick = {
+                        clientViewModel.setClientData(name, email, password, confirmPassword)
                         navController.navigate("AddCnpj")
                     },
                         text = stringResource(id = R.string.continue_)
                     )
                 }
 
-
             }
         }
-
-
     }
 }
