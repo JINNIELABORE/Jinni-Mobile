@@ -20,6 +20,7 @@ import br.senai.sp.jandira.screens.FirstPageScreen
 import br.senai.sp.jandira.screens.FreelancerSignUp
 import br.senai.sp.jandira.screens.SignUpMethodChoiceScreen
 import br.senai.sp.jandira.ui.theme.JinniTheme
+import br.senai.sp.jandira.viewmodel.ClientViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +30,7 @@ class MainActivity : ComponentActivity() {
             JinniTheme {
 
                 val  navController = rememberNavController()
+                val clientViewModel = ClientViewModel()
                 NavHost(
                     navController = navController,
                     startDestination = "FirstPage"
@@ -36,8 +38,8 @@ class MainActivity : ComponentActivity() {
                     composable(route = "FirstPage") { FirstPageScreen(navController) }
                     composable(route = "SignUpMethod") { SignUpMethodChoiceScreen(navController) }
                     composable(route = "FreelancerSignUp") { FreelancerSignUp(navController) }
-                    composable(route = "ClientSignUp") { ClientSignUp(navController) }
-                    composable(route = "AddCnpj") { AddCnpj(navController) }
+                    composable(route = "ClientSignUp") { ClientSignUp(navController, clientViewModel = clientViewModel ) }
+                    composable(route = "AddCnpj") { AddCnpj(navController , clientViewModel = clientViewModel)}
                 }
                 
             }
