@@ -80,6 +80,7 @@ fun FirstPageScreen(navController: NavController) {
                     ),
                     shape = RoundedCornerShape(10.dp),
                     onClick = {
+                        navController.navigate("SignIn")
                     }) {
                     Text(
                         text = stringResource(id = R.string.sign_in),

@@ -214,6 +214,13 @@ fun FreelancerSignUp(navController: NavController) {
 
                     GradientButton(onClick = {
 
+                        if(
+                            (freelancerName.value.isNotEmpty() && freelancerEmail.value.isNotEmpty() && freelancerPassword.value.isNotEmpty() && freelancerConfirmPassword.value.isNotEmpty()) &&
+                            (freelancerPassword.value == freelancerConfirmPassword.value)){
+
+
+                        }
+
                     },
                         text = stringResource(id = R.string.continue_)
                     )

@@ -15,4 +15,5 @@
     <string name="add_cnpj">Add your CNPJ</string>
     <string name="add_cnpj_text">Insert your cnpj bellow, then, we\'ll verify it for you!</string>
     <string name="cnpj">CNPJ</string>
+    <string name="signup_text">Don\'t have an account yet?</string>
 </resources>
