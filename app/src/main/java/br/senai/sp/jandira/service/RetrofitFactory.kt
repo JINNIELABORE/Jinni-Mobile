@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitFactory {
 
-    private val BASE_URL = "http://localhost:8080/"
+    private val BASE_URL = "https://jinni.onrender.com/"
     private val retrofitFactory = Retrofit
         .Builder()
         .baseUrl(BASE_URL)

@@ -19,6 +19,7 @@ import br.senai.sp.jandira.screens.ClientSignUp
 import br.senai.sp.jandira.screens.FirstPageScreen
 import br.senai.sp.jandira.screens.FreelancerSignUp
 import br.senai.sp.jandira.screens.SignUpMethodChoiceScreen
+import br.senai.sp.jandira.screens.Sucess
 import br.senai.sp.jandira.ui.theme.JinniTheme
 import br.senai.sp.jandira.viewmodel.ClientViewModel
 
@@ -40,6 +41,7 @@ class MainActivity : ComponentActivity() {
                     composable(route = "FreelancerSignUp") { FreelancerSignUp(navController) }
                     composable(route = "ClientSignUp") { ClientSignUp(navController, clientViewModel = clientViewModel ) }
                     composable(route = "AddCnpj") { AddCnpj(navController , clientViewModel = clientViewModel)}
+                    composable(route = "SuccessScreen") { Sucess() }
                 }
                 
             }
