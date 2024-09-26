@@ -15,4 +15,8 @@ class RetrofitFactory {
     fun createClientService(): ClientService {
         return retrofitFactory.create(ClientService::class.java)
     }
+
+    fun createFreelancerService(): FreelancerService {
+        return retrofitFactory.create(FreelancerService::class.java)
+    }
 }
