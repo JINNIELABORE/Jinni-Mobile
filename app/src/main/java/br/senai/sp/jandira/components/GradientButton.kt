@@ -34,9 +34,9 @@ fun GradientButton(
                 Brush.linearGradient(
                     0.0f to Color(0xff011F4B),
                     1.0f to Color(0xff03396C)
-                )
+                ),
+                shape = RoundedCornerShape(10.dp)
             ),
-        shape = RoundedCornerShape(topEnd = 32.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.Transparent
         )

@@ -272,7 +272,7 @@ fun FreelancerSignUp(navController: NavController) {
                                     if (response.isSuccessful){
                                         navController.navigate("SucessScreen")
                                     }else{
-
+                                        // erro
                                     }
                                 }
 
