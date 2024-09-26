@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.screens
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -132,15 +133,17 @@ fun AddCnpj(navController: NavController, clientViewModel: ClientViewModel) {
                                     ) {
                                         if (response.isSuccessful) {
                                             // Navegue para a próxima tela
+                                            Log.i("response", response.toString())
                                             navController.navigate("SuccessScreen")
                                         } else {
                                             // Trate o erro de resposta
 
-                                        }
+                                            Log.i("response", response.toString())                                        }
                                     }
 
                                     override fun onFailure(call: Call<Client>, t: Throwable) {
                                         // Trate a falha na chamada
+                                        Log.i("response", t.toString())
                                     }
                                 })
                             }

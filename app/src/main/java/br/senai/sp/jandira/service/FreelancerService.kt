@@ -11,9 +11,10 @@ interface FreelancerService {
 
     @Headers("Content-Type: application/json")
     @POST("v1/jinni/freelancer")
-    @GET("v1/jinni/freelancers")
 
     fun postFreelancer(@Body freelancer: Freelancer): Call<Freelancer>
+
+    @GET("v1/jinni/freelancers")
     fun getFreelancer(): Call<Freelancer>
 
 }

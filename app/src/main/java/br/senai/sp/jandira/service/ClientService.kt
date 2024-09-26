@@ -10,10 +10,11 @@ import retrofit2.http.POST
 interface ClientService {
 
     @Headers("Content-Type: application/json")
-    @POST("v1/jinni/cliente")
-    @GET("v1/jinni/clientes")
 
+    @POST("v1/jinni/cliente")
     fun postClient(@Body client: Client): Call<Client>
+
+    @GET("v1/jinni/clientes")
     fun getClient(): Call<List<Client>>
 
 }

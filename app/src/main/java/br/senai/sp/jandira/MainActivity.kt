@@ -36,15 +36,15 @@ class MainActivity : ComponentActivity() {
                 val clientViewModel = ClientViewModel()
                 NavHost(
                     navController = navController,
-                    startDestination = "FirstPage"
+                    startDestination = "SuccessScreen"
                 ){
                     composable(route = "FirstPage") { FirstPageScreen(navController) }
                     composable(route = "SignUpMethod") { SignUpMethodChoiceScreen(navController) }
                     composable(route = "FreelancerSignUp") { FreelancerSignUp(navController) }
                     composable(route = "ClientSignUp") { ClientSignUp(navController, clientViewModel = clientViewModel ) }
                     composable(route = "AddCnpj") { AddCnpj(navController , clientViewModel = clientViewModel)}
-                    composable(route = "SuccessScreen") { Sucess() }
-                    composable(route = "SignIn") { LoginScreen(navController)
+                    composable(route = "SuccessScreen") { Sucess()}
+                    composable(route = "SignIn") { LoginScreen(navController)}
                     composable(route = "Home"){ FreelanceHomeScreen() }
 
                     }
@@ -53,5 +53,5 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
+
 
