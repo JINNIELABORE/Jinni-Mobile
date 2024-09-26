@@ -10,9 +10,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.FilterList
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -40,7 +43,7 @@ fun FreelanceHomeScreen() {
     Surface(
         modifier = Modifier
             .fillMaxSize(),
-        color = Color(0xffFFFFFF)
+        color = Color(0xffFFFFFF),
     ) {
 
         Column (
@@ -52,7 +55,8 @@ fun FreelanceHomeScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 65.dp, start = 25.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ){
 
                 Row (
@@ -87,13 +91,36 @@ fun FreelanceHomeScreen() {
                         Icon(imageVector = Icons.Outlined.Notifications, contentDescription = "notify")
                     }
                     IconButton(onClick = {}) {
-                        Icon(imageVector = Icons.Outlined.Notifications, contentDescription = "notify")
+                        Icon(imageVector = Icons.Outlined.FilterList, contentDescription = "notify")
                     }
-
-
                 }
             }
 
+
+            LazyColumn (
+                modifier = Modifier.fillMaxSize().padding(horizontal = 15.dp)
+            ){
+
+                items(10){
+                    Card (
+                        modifier = Modifier
+                            .height(200.dp)
+                            .fillMaxWidth()
+                            .padding(vertical = 10.dp)
+                    ){
+
+                    }
+                }
+
+            }
+
+
+        }
+
+        Column (
+            modifier = Modifier.fillMaxSize().padding(bottom = 35.dp),
+            verticalArrangement = Arrangement.Bottom
+        ){
 
             Row (
                 modifier = Modifier
@@ -107,9 +134,9 @@ fun FreelanceHomeScreen() {
                         .height(45.dp)
                         .background(
                             Brush.linearGradient(
-                            0.0f to Color(0xff03396C),
-                            1.0f to Color(0xff011F4B)
-                        ),
+                                0.0f to Color(0xff03396C),
+                                1.0f to Color(0xff011F4B)
+                            ),
                             shape = RoundedCornerShape(15.dp)),
                     colors = CardDefaults.cardColors(
                         containerColor = Color.Transparent
@@ -149,15 +176,12 @@ fun FreelanceHomeScreen() {
 
 
             }
-
-
-
-
-
         }
     }
 
+
 }
+
 
 @Preview (showSystemUi = true, showBackground = true)
 @Composable
