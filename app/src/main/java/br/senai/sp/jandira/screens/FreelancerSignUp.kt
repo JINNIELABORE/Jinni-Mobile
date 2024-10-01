@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
+import androidx.compose.material.icons.outlined.ArrowBackIosNew
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -74,13 +75,13 @@ fun FreelancerSignUp(navController: NavController) {
         ){
             
             Row (
-                modifier = Modifier.fillMaxWidth().padding(top = 65.dp, start = 25.dp)
+                modifier = Modifier.fillMaxWidth().padding(top = 65.dp, start = 10.dp)
             ){
                 IconButton(onClick = {
                     navController.navigate("SignUpMethod")
                 }) {
                     Icon(
-                        imageVector = Icons.Outlined.ArrowBack,
+                        imageVector = Icons.Outlined.ArrowBackIosNew,
                         contentDescription = "seta",
                         tint = Color(0xff011F4B)
                     )

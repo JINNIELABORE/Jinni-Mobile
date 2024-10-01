@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
+import androidx.compose.material.icons.outlined.ArrowBackIosNew
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -27,6 +28,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -58,13 +60,13 @@ fun LoginScreen(navController: NavController) {
             Row (
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 65.dp, start = 25.dp)
+                    .padding(top = 65.dp, start = 10.dp)
             ){
                 IconButton(onClick = {
                     navController.navigate("FirstPage")
                 }) {
                     Icon(
-                        imageVector = Icons.Outlined.ArrowBack,
+                        imageVector = Icons.Outlined.ArrowBackIosNew,
                         contentDescription = "seta",
                         tint = Color(0xff011F4B)
                     )
@@ -135,7 +137,8 @@ fun LoginScreen(navController: NavController) {
                         unfocusedBorderColor = Color(0xff6F6F6F),
                         focusedTextColor = Color(0xff222222)
 
-                    )
+                    ),
+                    visualTransformation = PasswordVisualTransformation()
                 )
 
                 Row (

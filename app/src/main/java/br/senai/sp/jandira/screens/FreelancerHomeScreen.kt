@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.senai.sp.jandira.R
 import br.senai.sp.jandira.ui.theme.BalooTammudu
+import br.senai.sp.jandira.ui.theme.Poppins
 
 
 @Composable
@@ -120,11 +121,46 @@ fun FreelanceHomeScreen(navController: NavController) {
                                 ),
                                 shape = RoundedCornerShape(15.dp)
                             )
+                            .clickable { }
                             ,
                         colors = CardDefaults.cardColors(
                             containerColor = Color.Transparent
                         )
                     ){
+
+                        Column (
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(start = 5.dp, end = 5.dp, top = 10.dp, bottom = 5.dp)
+                        ){
+
+                            Row (
+                                modifier = Modifier
+                                    .fillMaxWidth(),
+                                horizontalArrangement = Arrangement.Center
+                            ){
+                                Text(
+                                    text = "Elabore",
+                                    fontFamily = BalooTammudu,
+                                    color = Color(0xffFFFFFF),
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.SemiBold
+                                )
+                            }
+                            Column (
+                                modifier = Modifier
+                                    .fillMaxWidth(),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ){
+                                Text(
+                                    text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut consequat enim, vitae venenatis urna...",
+                                    fontFamily = Poppins,
+                                    color = Color(0xffFFFFFF),
+                                    fontSize = 10.sp
+                                    )
+                            }
+
+                        }
 
                     }
                 }
@@ -178,14 +214,18 @@ fun FreelanceHomeScreen(navController: NavController) {
                             modifier = Modifier
                                 .height(25.dp)
                                 .width(25.dp)
-                                .clickable {  })
+                                .clickable {
+                                    navController.navigate("ProjectsScreen")
+                                })
                         Image(
                             painter = painterResource(id = R.drawable.casa),
                             contentDescription = "projetos",
                             modifier = Modifier
                                 .height(25.dp)
                                 .width(25.dp)
-                                .clickable {  })
+                                .clickable {
+                                    navController.navigate("Home")
+                                })
                         Image(
                             painter = painterResource(id = R.drawable.conversa),
                             contentDescription = "projetos",

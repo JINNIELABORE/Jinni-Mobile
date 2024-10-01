@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
+import androidx.compose.material.icons.outlined.ArrowBackIosNew
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -37,13 +38,13 @@ fun ClientSignUp(navController: NavController, clientViewModel: ClientViewModel)
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 65.dp, start = 30.dp)
+                    .padding(top = 65.dp, start = 10.dp)
             ) {
                 IconButton(onClick = {
                     navController.navigate("SignUpMethod")
                 }) {
                     Icon(
-                        imageVector = Icons.Outlined.ArrowBack,
+                        imageVector = Icons.Outlined.ArrowBackIosNew,
                         contentDescription = "seta",
                         tint = Color(0xff011F4B)
                     )

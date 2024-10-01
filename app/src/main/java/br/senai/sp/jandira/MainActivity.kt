@@ -21,6 +21,7 @@ import br.senai.sp.jandira.screens.FirstPageScreen
 import br.senai.sp.jandira.screens.FreelanceHomeScreen
 import br.senai.sp.jandira.screens.FreelancerSignUp
 import br.senai.sp.jandira.screens.LoginScreen
+import br.senai.sp.jandira.screens.ProjectsScreen
 import br.senai.sp.jandira.screens.SignUpMethodChoiceScreen
 import br.senai.sp.jandira.screens.Sucess
 import br.senai.sp.jandira.ui.theme.JinniTheme
@@ -37,7 +38,7 @@ class MainActivity : ComponentActivity() {
                 val clientViewModel = ClientViewModel()
                 NavHost(
                     navController = navController,
-                    startDestination = "Home"
+                    startDestination = "FirstPage"
                 ){
                     composable(route = "FirstPage") { FirstPageScreen(navController) }
                     composable(route = "SignUpMethod") { SignUpMethodChoiceScreen(navController) }
@@ -47,7 +48,9 @@ class MainActivity : ComponentActivity() {
                     composable(route = "SuccessScreen") { Sucess()}
                     composable(route = "SignIn") { LoginScreen(navController)}
                     composable(route = "Home"){ FreelanceHomeScreen(navController) }
-                    composable(route = "ChatList"){ ChatListScreen() }
+                    composable(route = "ChatList"){ ChatListScreen(navController) }
+                    composable(route = "ProjectsScreen"){ ProjectsScreen() }
+
 
                     }
                 }
