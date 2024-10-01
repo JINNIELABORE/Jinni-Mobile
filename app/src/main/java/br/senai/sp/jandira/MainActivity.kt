@@ -15,6 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.senai.sp.jandira.screens.AddCnpj
+import br.senai.sp.jandira.screens.ChatListScreen
 import br.senai.sp.jandira.screens.ClientSignUp
 import br.senai.sp.jandira.screens.FirstPageScreen
 import br.senai.sp.jandira.screens.FreelanceHomeScreen
@@ -45,7 +46,8 @@ class MainActivity : ComponentActivity() {
                     composable(route = "AddCnpj") { AddCnpj(navController , clientViewModel = clientViewModel)}
                     composable(route = "SuccessScreen") { Sucess()}
                     composable(route = "SignIn") { LoginScreen(navController)}
-                    composable(route = "Home"){ FreelanceHomeScreen() }
+                    composable(route = "Home"){ FreelanceHomeScreen(navController) }
+                    composable(route = "ChatList"){ ChatListScreen() }
 
                     }
                 }

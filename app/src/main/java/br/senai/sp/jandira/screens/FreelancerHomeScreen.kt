@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,12 +34,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import br.senai.sp.jandira.R
 import br.senai.sp.jandira.ui.theme.BalooTammudu
 
 
 @Composable
-fun FreelanceHomeScreen() {
+fun FreelanceHomeScreen(navController: NavController) {
 
     Surface(
         modifier = Modifier
@@ -47,7 +49,9 @@ fun FreelanceHomeScreen() {
     ) {
 
         Column (
-            modifier = Modifier.fillMaxSize().padding(bottom = 35.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 35.dp),
             verticalArrangement = Arrangement.SpaceBetween
         ){
 
@@ -98,7 +102,9 @@ fun FreelanceHomeScreen() {
 
 
             LazyColumn (
-                modifier = Modifier.fillMaxSize().padding(horizontal = 15.dp)
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(start = 15.dp, end = 15.dp, bottom = 30.dp)
             ){
 
                 items(10){
@@ -107,6 +113,17 @@ fun FreelanceHomeScreen() {
                             .height(200.dp)
                             .fillMaxWidth()
                             .padding(vertical = 10.dp)
+                            .background(
+                                Brush.linearGradient(
+                                    0.0f to Color(0xff011F4B),
+                                    1.0f to Color(0xff03396C)
+                                ),
+                                shape = RoundedCornerShape(15.dp)
+                            )
+                            ,
+                        colors = CardDefaults.cardColors(
+                            containerColor = Color.Transparent
+                        )
                     ){
 
                     }
@@ -118,7 +135,9 @@ fun FreelanceHomeScreen() {
         }
 
         Column (
-            modifier = Modifier.fillMaxSize().padding(bottom = 35.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 35.dp),
             verticalArrangement = Arrangement.Bottom
         ){
 
@@ -137,7 +156,8 @@ fun FreelanceHomeScreen() {
                                 0.0f to Color(0xff03396C),
                                 1.0f to Color(0xff011F4B)
                             ),
-                            shape = RoundedCornerShape(15.dp)),
+                            shape = RoundedCornerShape(15.dp)
+                        ),
                     colors = CardDefaults.cardColors(
                         containerColor = Color.Transparent
                     )
@@ -157,19 +177,24 @@ fun FreelanceHomeScreen() {
                             contentDescription = "projetos",
                             modifier = Modifier
                                 .height(25.dp)
-                                .width(25.dp))
+                                .width(25.dp)
+                                .clickable {  })
                         Image(
                             painter = painterResource(id = R.drawable.casa),
                             contentDescription = "projetos",
                             modifier = Modifier
                                 .height(25.dp)
-                                .width(25.dp))
+                                .width(25.dp)
+                                .clickable {  })
                         Image(
                             painter = painterResource(id = R.drawable.conversa),
                             contentDescription = "projetos",
                             modifier = Modifier
                                 .height(25.dp)
-                                .width(25.dp))
+                                .width(25.dp)
+                                .clickable {
+                                    navController.navigate("ChatList")
+                                })
                     }
 
                 }
@@ -180,11 +205,4 @@ fun FreelanceHomeScreen() {
     }
 
 
-}
-
-
-@Preview (showSystemUi = true, showBackground = true)
-@Composable
-private fun Homeprev() {
-    FreelanceHomeScreen()
 }
