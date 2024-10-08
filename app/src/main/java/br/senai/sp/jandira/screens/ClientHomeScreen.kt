@@ -1,4 +1,6 @@
 package br.senai.sp.jandira.screens
+
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,7 +20,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FilterList
 import androidx.compose.material.icons.outlined.Notifications
-import androidx.compose.material.icons.outlined.NotificationsNone
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -26,30 +27,53 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import br.senai.sp.jandira.R
+import br.senai.sp.jandira.model.Freelancer
+import br.senai.sp.jandira.model.Results
+import br.senai.sp.jandira.service.RetrofitFactory
 import br.senai.sp.jandira.ui.theme.BalooTammudu
-import br.senai.sp.jandira.ui.theme.Poppins
-
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 @Composable
-fun FreelanceHomeScreen(navController: NavController) {
+fun ClientHomeScreen() {
 
-    Surface(
+    var freelancerList by remember{
+        mutableStateOf(listOf<Freelancer>())
+    }
+
+    var callFreelancerList = RetrofitFactory().createFreelancerService().getFreelancer()
+
+    callFreelancerList.enqueue(object : Callback<Results> {
+        override fun onResponse(p0: Call<Results>, p1: Response<Results>) {
+            freelancerList = p1.body()!!.freelancers
+            Log.i("XXXXXXXXX", "onResponse: ${freelancerList.size}")
+        }
+
+        override fun onFailure(p0: Call<Results>, p1: Throwable) {
+        }
+
+    })
+
+    Surface (
         modifier = Modifier
             .fillMaxSize(),
-        color = Color(0xffFFFFFF),
-    ) {
+        color = Color(0xffFFFFFF)
+    ){
 
         Column (
             modifier = Modifier
@@ -61,7 +85,7 @@ fun FreelanceHomeScreen(navController: NavController) {
             Row (
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 65.dp, start = 10.dp),
+                    .padding(top = 65.dp, start = 25.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ){
@@ -78,7 +102,7 @@ fun FreelanceHomeScreen(navController: NavController) {
                         Image(
                             painter = painterResource(id = R.drawable.francisco),
                             contentDescription = "francisco"
-                            )
+                        )
                     }
 
                     Spacer(modifier = Modifier.width(10.dp))
@@ -86,95 +110,39 @@ fun FreelanceHomeScreen(navController: NavController) {
                     Text(
                         text = "Francisco de Almeida",
                         fontFamily = BalooTammudu,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        style = TextStyle(
-                            brush = Brush.linearGradient(
-                                listOf(
-                                    Color(0xff011F4B),
-                                    Color(0xff005B96)
-                                )
-                            )
-                        )
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = Color(0xff011F4B)
                     )
 
                 }
 
                 Row {
                     IconButton(onClick = {}) {
-                        Icon(imageVector = Icons.Outlined.Notifications, contentDescription = "notify", tint = Color(0xff005B96))
+                        Icon(imageVector = Icons.Outlined.Notifications, contentDescription = "notify")
                     }
                     IconButton(onClick = {}) {
-                        Icon(imageVector = Icons.Outlined.FilterList, contentDescription = "filter", tint = Color(0xff005B96))
+                        Icon(imageVector = Icons.Outlined.FilterList, contentDescription = "notify")
                     }
                 }
             }
-
 
             LazyColumn (
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(start = 15.dp, end = 15.dp, bottom = 45.dp)
+                    .padding(start = 15.dp, end = 15.dp, bottom = 30.dp)
             ){
 
-                items(10){
-                    Card (
-                        modifier = Modifier
-                            .height(200.dp)
-                            .fillMaxWidth()
-                            .padding(vertical = 10.dp)
-                            .background(
-                                Brush.linearGradient(
-                                    0.0f to Color(0xff011F4B),
-                                    1.0f to Color(0xff03396C)
-                                ),
-                                shape = RoundedCornerShape(15.dp)
-                            )
-                            .clickable { }
-                            ,
-                        colors = CardDefaults.cardColors(
-                            containerColor = Color.Transparent
-                        )
-                    ){
-
-                        Column (
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(start = 5.dp, end = 5.dp, top = 10.dp, bottom = 5.dp)
-                        ){
-
-                            Row (
-                                modifier = Modifier
-                                    .fillMaxWidth(),
-                                horizontalArrangement = Arrangement.Center
-                            ){
-                                Text(
-                                    text = "Elabore",
-                                    fontFamily = BalooTammudu,
-                                    color = Color(0xffFFFFFF),
-                                    fontSize = 18.sp,
-                                    fontWeight = FontWeight.SemiBold
-                                )
-                            }
-                            Column (
-                                modifier = Modifier
-                                    .fillMaxWidth(),
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ){
-                                Text(
-                                    text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut consequat enim, vitae venenatis urna...",
-                                    fontFamily = Poppins,
-                                    color = Color(0xffFFFFFF),
-                                    fontSize = 10.sp
-                                    )
-                            }
-
-                        }
-
-                    }
+                items(freelancerList){
+                    FreelancerCard(freelancer = it)
                 }
 
             }
+
+
+
+
+
 
 
         }
@@ -224,7 +192,7 @@ fun FreelanceHomeScreen(navController: NavController) {
                                 .height(25.dp)
                                 .width(25.dp)
                                 .clickable {
-                                    navController.navigate("ProjectsScreen")
+                                    //                                  navController.navigate("ProjectsScreen")
                                 })
                         Image(
                             painter = painterResource(id = R.drawable.casa),
@@ -233,7 +201,7 @@ fun FreelanceHomeScreen(navController: NavController) {
                                 .height(25.dp)
                                 .width(25.dp)
                                 .clickable {
-                                    navController.navigate("Home")
+                                    //                              navController.navigate("Home")
                                 })
                         Image(
                             painter = painterResource(id = R.drawable.conversa),
@@ -242,7 +210,7 @@ fun FreelanceHomeScreen(navController: NavController) {
                                 .height(25.dp)
                                 .width(25.dp)
                                 .clickable {
-                                    navController.navigate("ChatList")
+                                    //                               navController.navigate("ChatList")
                                 })
                     }
 
@@ -251,7 +219,61 @@ fun FreelanceHomeScreen(navController: NavController) {
 
             }
         }
+
     }
 
+}
 
+@Composable
+fun FreelancerCard(freelancer: Freelancer) {
+
+    Card (
+        modifier = Modifier
+            .height(90.dp)
+            .fillMaxWidth()
+            .padding(vertical = 10.dp)
+            .background(
+                brush = Brush.linearGradient(
+                    0.0f to Color(0xff011F4B),
+                    1.0f to Color(0xff03396C)
+                ),
+                shape = RoundedCornerShape(10.dp)
+            ),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.Transparent
+        )
+    ){
+
+        Row (
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 10.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ){
+
+            Card (
+                modifier = Modifier
+                    .height(50.dp)
+                    .width(50.dp),
+                shape = CircleShape
+            ){
+
+            }
+
+            Text(
+                text = freelancer.nome_freelancer,
+                fontFamily = BalooTammudu,
+                fontSize = 18.sp,
+                color = Color(0xffFFFFFF)
+            )
+
+        }
+
+    }
+}
+
+@Preview (showSystemUi = true, showBackground = true)
+@Composable
+private fun ClientHomePrev() {
+    ClientHomeScreen()
 }

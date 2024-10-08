@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.service
 
 import br.senai.sp.jandira.model.Client
+import br.senai.sp.jandira.model.Freelancer
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -17,11 +18,9 @@ class RetrofitFactory {
         return retrofitFactory.create(ClientService::class.java)
     }
 
-   // fun getClientService(): List<Client>{
-        //return retrofitFactory
-  //  }
 
     fun createFreelancerService(): FreelancerService {
         return retrofitFactory.create(FreelancerService::class.java)
     }
+
 }

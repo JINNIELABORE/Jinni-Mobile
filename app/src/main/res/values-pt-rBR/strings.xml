@@ -16,6 +16,9 @@
     <string name="add_cnpj">Adicione seu CNPJ</string>
     <string name="add_cnpj_text">Insira seu CNPJ abaixo, então, o verificaremos para você!</string>
     <string name="cnpj">CNPJ</string>
+    <string name="cpf">CPF</string>
     <string name="signup_text">Ainda não tem uma conta?</string>
     <string name="projects">Projetos</string>
+    <string name="add_birthday">Insira sua data de nascimento.</string>
+    <string name="add_info">Adicione suas informações</string>
 </resources>

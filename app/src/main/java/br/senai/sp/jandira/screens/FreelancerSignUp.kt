@@ -10,6 +10,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.ArrowBackIosNew
+import androidx.compose.material.icons.outlined.Email
+import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.material.icons.outlined.Numbers
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -20,9 +24,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -99,8 +105,15 @@ fun FreelancerSignUp(navController: NavController) {
                         text = stringResource(id = R.string.get_started),
                         fontSize = 32.sp,
                         fontFamily = BalooTammudu,
-                        fontWeight = FontWeight.Normal,
-                        color = Color(0xff011F4B)
+                        fontWeight = FontWeight.SemiBold,
+                        style = TextStyle(
+                            brush = Brush.linearGradient(
+                                listOf(
+                                    Color(0xff011F4B),
+                                    Color(0xff005B96)
+                                )
+                            )
+                        )
                     )
 
                     Text(
@@ -117,127 +130,157 @@ fun FreelancerSignUp(navController: NavController) {
 
                     OutlinedTextField(
                         value = freelancerName.value,
-                        onValueChange = {
-                            freelancerName.value = it
-                        },
+                        onValueChange = { freelancerName.value = it },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 5.dp),
                         shape = RoundedCornerShape(10.dp),
-                        label = {
+                        placeholder = {
                             Text(
                                 text = stringResource(id = R.string.name),
                                 color = Color(0xff222222),
-                                fontFamily = Poppins)
+                                fontFamily = Poppins,
+                            )
+                        },
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Outlined.Person,
+                                contentDescription = "Name",
+                                tint = Color(0xff222222)
+                            )
                         },
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedContainerColor = Color(0xffFBFBFB),
-                            unfocusedContainerColor = Color(0xffFBFBFB),
+                            focusedContainerColor = Color(0xffE5E5E5),
+                            unfocusedContainerColor = Color(0xffE5E5E5),
                             focusedBorderColor = Color(0xff000000),
-                            unfocusedBorderColor = Color(0xff6F6F6F),
+                            unfocusedBorderColor = Color.Transparent,
                             focusedTextColor = Color(0xff222222)
-
-                        )
+                        ),
+                        maxLines = 1
                     )
 
                     OutlinedTextField(
                         value = freelancerEmail.value,
-                        onValueChange = {
-                            freelancerEmail.value = it
-                        },
+                        onValueChange = {freelancerEmail.value = it},
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 5.dp),
                         shape = RoundedCornerShape(10.dp),
-                        label = {
+                        placeholder = {
                             Text(
                                 text = stringResource(id = R.string.email),
                                 color = Color(0xff222222),
-                                fontFamily = Poppins)
+                                fontFamily = Poppins,
+                            )
+                        },
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Outlined.Email,
+                                contentDescription = "Email",
+                                tint = Color(0xff222222)
+                            )
                         },
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedContainerColor = Color(0xffFBFBFB),
-                            unfocusedContainerColor = Color(0xffFBFBFB),
+                            focusedContainerColor = Color(0xffE5E5E5),
+                            unfocusedContainerColor = Color(0xffE5E5E5),
                             focusedBorderColor = Color(0xff000000),
-                            unfocusedBorderColor = Color(0xff6F6F6F),
+                            unfocusedBorderColor = Color.Transparent,
                             focusedTextColor = Color(0xff222222)
-
-                        )
+                        ),
+                        maxLines = 1
                     )
 
                     OutlinedTextField(
                         value = freelancerPassword.value,
-                        onValueChange = {
-                            freelancerPassword.value = it
-                        },
+                        onValueChange = { freelancerPassword.value = it },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 5.dp),
                         shape = RoundedCornerShape(10.dp),
-                        label = {
+                        placeholder = {
                             Text(
                                 text = stringResource(id = R.string.password),
                                 color = Color(0xff222222),
-                                fontFamily = Poppins)
+                                fontFamily = Poppins,
+                            )
+                        },
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Outlined.Lock,
+                                contentDescription = "Password",
+                                tint = Color(0xff222222)
+                            )
                         },
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedContainerColor = Color(0xffFBFBFB),
-                            unfocusedContainerColor = Color(0xffFBFBFB),
+                            focusedContainerColor = Color(0xffE5E5E5),
+                            unfocusedContainerColor = Color(0xffE5E5E5),
                             focusedBorderColor = Color(0xff000000),
-                            unfocusedBorderColor = Color(0xff6F6F6F),
+                            unfocusedBorderColor = Color.Transparent,
                             focusedTextColor = Color(0xff222222)
-
-                        )
+                        ),
+                        maxLines = 1
                     )
 
                     OutlinedTextField(
                         value = freelancerConfirmPassword.value,
-                        onValueChange = {
-                            freelancerConfirmPassword.value = it
-                        },
+                        onValueChange = { freelancerConfirmPassword.value = it },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 5.dp),
                         shape = RoundedCornerShape(10.dp),
-                        label = {
+                        placeholder = {
                             Text(
                                 text = stringResource(id = R.string.confirm_password),
                                 color = Color(0xff222222),
-                                fontFamily = Poppins)
+                                fontFamily = Poppins,
+                            )
+                        },
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Outlined.Lock,
+                                contentDescription = "Confirm Password",
+                                tint = Color(0xff222222)
+                            )
                         },
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedContainerColor = Color(0xffFBFBFB),
-                            unfocusedContainerColor = Color(0xffFBFBFB),
+                            focusedContainerColor = Color(0xffE5E5E5),
+                            unfocusedContainerColor = Color(0xffE5E5E5),
                             focusedBorderColor = Color(0xff000000),
-                            unfocusedBorderColor = Color(0xff6F6F6F),
+                            unfocusedBorderColor = Color.Transparent,
                             focusedTextColor = Color(0xff222222)
-
-                        )
+                        ),
+                        maxLines = 1
                     )
 
                     OutlinedTextField(
                         value = freelancerCpf.value,
-                        onValueChange = {
-                            freelancerCpf.value = it
-                        },
+                        onValueChange = { freelancerCpf.value = it },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 5.dp),
                         shape = RoundedCornerShape(10.dp),
-                        label = {
+                        placeholder = {
                             Text(
-                                text = stringResource(id = R.string.confirm_password),
+                                text = stringResource(id = R.string.cpf),
                                 color = Color(0xff222222),
-                                fontFamily = Poppins)
+                                fontFamily = Poppins,
+                            )
+                        },
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Outlined.Numbers,
+                                contentDescription = "CPF",
+                                tint = Color(0xff222222)
+                            )
                         },
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedContainerColor = Color(0xffFBFBFB),
-                            unfocusedContainerColor = Color(0xffFBFBFB),
+                            focusedContainerColor = Color(0xffE5E5E5),
+                            unfocusedContainerColor = Color(0xffE5E5E5),
                             focusedBorderColor = Color(0xff000000),
-                            unfocusedBorderColor = Color(0xff6F6F6F),
+                            unfocusedBorderColor = Color.Transparent,
                             focusedTextColor = Color(0xff222222)
-
-                        )
+                        ),
+                        maxLines = 1
                     )
 
                    

@@ -61,7 +61,7 @@ fun FirstPageScreen(navController: NavController) {
                     color = Color(0xff03396C),
                     fontSize = 64.sp,
                     fontFamily = BalooTammudu,
-                    fontWeight = FontWeight.Normal
+                    fontWeight = FontWeight.SemiBold
                 )
             }
 

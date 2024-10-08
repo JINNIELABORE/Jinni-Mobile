@@ -15,7 +15,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.senai.sp.jandira.screens.AddCnpj
+import br.senai.sp.jandira.screens.BirthdayScreen
 import br.senai.sp.jandira.screens.ChatListScreen
+import br.senai.sp.jandira.screens.ClientHomeScreen
 import br.senai.sp.jandira.screens.ClientSignUp
 import br.senai.sp.jandira.screens.FirstPageScreen
 import br.senai.sp.jandira.screens.FreelanceHomeScreen
@@ -50,6 +52,8 @@ class MainActivity : ComponentActivity() {
                     composable(route = "Home"){ FreelanceHomeScreen(navController) }
                     composable(route = "ChatList"){ ChatListScreen(navController) }
                     composable(route = "ProjectsScreen"){ ProjectsScreen() }
+                    composable(route = "ClientHome"){ ClientHomeScreen() }
+                    composable(route = "Birthday"){ BirthdayScreen() }
 
 
                     }

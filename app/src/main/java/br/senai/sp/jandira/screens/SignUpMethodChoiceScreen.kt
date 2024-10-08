@@ -24,6 +24,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.LinkAnnotation
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -55,7 +57,15 @@ fun SignUpMethodChoiceScreen(navController: NavController) {
                    text = stringResource(id = R.string.sign_up_as),
                    fontSize = 24.sp,
                    fontFamily = BalooTammudu,
-                   color = Color(0xff011F4B)
+                   fontWeight = FontWeight.SemiBold,
+                   style = TextStyle(
+                       brush = Brush.linearGradient(
+                           listOf(
+                               Color(0xff011F4B),
+                               Color(0xff005B96)
+                           )
+                       )
+                   )
                )
            }
 

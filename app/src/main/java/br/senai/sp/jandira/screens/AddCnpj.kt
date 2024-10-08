@@ -7,12 +7,16 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.ArrowBackIosNew
+import androidx.compose.material.icons.outlined.CorporateFare
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -67,8 +71,15 @@ fun AddCnpj(navController: NavController, clientViewModel: ClientViewModel) {
                         text = stringResource(id = R.string.add_cnpj),
                         fontSize = 32.sp,
                         fontFamily = BalooTammudu,
-                        fontWeight = FontWeight.Normal,
-                        color = Color(0xff011F4B)
+                        fontWeight = FontWeight.SemiBold,
+                        style = TextStyle(
+                            brush = Brush.linearGradient(
+                                listOf(
+                                    Color(0xff011F4B),
+                                    Color(0xff005B96)
+                                )
+                            )
+                        )
                     )
 
                     Text(
@@ -86,25 +97,33 @@ fun AddCnpj(navController: NavController, clientViewModel: ClientViewModel) {
 
                     OutlinedTextField(
                         value = cnpj,
-                        onValueChange = { cnpj = it },
+                        onValueChange = { cnpj = it},
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 5.dp),
                         shape = RoundedCornerShape(10.dp),
-                        label = {
+                        placeholder = {
                             Text(
                                 text = stringResource(id = R.string.cnpj),
                                 color = Color(0xff222222),
-                                fontFamily = Poppins
+                                fontFamily = Poppins,
+                            )
+                        },
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Outlined.CorporateFare,
+                                contentDescription = "CNPJ",
+                                tint = Color(0xff222222)
                             )
                         },
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedContainerColor = Color(0xffFBFBFB),
-                            unfocusedContainerColor = Color(0xffFBFBFB),
+                            focusedContainerColor = Color(0xffE5E5E5),
+                            unfocusedContainerColor = Color(0xffE5E5E5),
                             focusedBorderColor = Color(0xff000000),
-                            unfocusedBorderColor = Color(0xff6F6F6F),
+                            unfocusedBorderColor = Color.Transparent,
                             focusedTextColor = Color(0xff222222)
                         ),
+                        maxLines = 1,
                         keyboardOptions = KeyboardOptions(
                             keyboardType = KeyboardType.Number
                         )
