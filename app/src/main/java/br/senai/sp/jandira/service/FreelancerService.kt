@@ -17,4 +17,7 @@ interface FreelancerService {
     @GET("v1/jinni/freelancers")
     fun getFreelancer(): Call<Results>
 
+    @GET("v1/jinni/nome/freelancer?emailDigitado={email}")
+    fun getFreelancerByEmail(@Body email: String): Call<Freelancer>
+
 }

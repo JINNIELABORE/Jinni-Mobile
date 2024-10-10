@@ -21,9 +21,11 @@ import br.senai.sp.jandira.ui.theme.BalooTammudu
 
 @Composable
 fun GradientButton(
-    onClick: () -> Unit,
+    onClick: @Composable () -> Unit,
     text: String
 ) {
+
+
 
     Button(
         onClick,
@@ -48,10 +50,4 @@ fun GradientButton(
             fontWeight = FontWeight.Normal,
             fontSize = 18.sp)
     }
-}
-
-@Preview (showBackground = true)
-@Composable
-private fun GradientButtonPreview() {
-    GradientButton(onClick = {}, text = "Conectar")
 }

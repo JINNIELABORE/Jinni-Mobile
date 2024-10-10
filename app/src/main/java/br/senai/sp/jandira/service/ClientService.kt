@@ -17,4 +17,7 @@ interface ClientService {
     @GET("v1/jinni/clientes")
     fun getClient(): Call<List<Client>>
 
+    @GET("v1/jinni/nome/client?emailDigitado={email}")
+    fun getClientByEmail(@Body email: String): Call<Client>
+
 }

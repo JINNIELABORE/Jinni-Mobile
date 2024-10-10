@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity() {
                     composable(route = "AddCnpj") { AddCnpj(navController , clientViewModel = clientViewModel)}
                     composable(route = "SuccessScreen") { Sucess()}
                     composable(route = "SignIn") { LoginScreen(navController)}
-                    composable(route = "Home"){ FreelanceHomeScreen(navController) }
+                    composable(route = "FreelancerHome"){ FreelanceHomeScreen(navController) }
                     composable(route = "ChatList"){ ChatListScreen(navController) }
                     composable(route = "ProjectsScreen"){ ProjectsScreen() }
                     composable(route = "ClientHome"){ ClientHomeScreen() }

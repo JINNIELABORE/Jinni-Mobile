@@ -61,7 +61,6 @@ fun ClientHomeScreen() {
     callFreelancerList.enqueue(object : Callback<Results> {
         override fun onResponse(p0: Call<Results>, p1: Response<Results>) {
             freelancerList = p1.body()!!.freelancers
-            Log.i("XXXXXXXXX", "onResponse: ${freelancerList.size}")
         }
 
         override fun onFailure(p0: Call<Results>, p1: Throwable) {
