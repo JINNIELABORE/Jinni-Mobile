@@ -6,6 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ClientService {
 
@@ -17,7 +18,7 @@ interface ClientService {
     @GET("v1/jinni/clientes")
     fun getClient(): Call<List<Client>>
 
-    @GET("v1/jinni/nome/client?emailDigitado={email}")
-    fun getClientByEmail(@Body email: String): Call<Client>
+    @GET("v1/jinni/nome/cliente")
+    fun getClientByEmail(@Query("email") email: String): Call<Client>
 
 }

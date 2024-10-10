@@ -63,6 +63,12 @@ fun LoginScreen(navController: NavController) {
     var password = remember {
         mutableStateOf("")
     }
+    var freelancer by remember {
+        mutableStateOf(Freelancer())
+    }
+    var client by remember {
+        mutableStateOf(Client())
+    }
 
 
 
@@ -141,7 +147,8 @@ fun LoginScreen(navController: NavController) {
                         unfocusedContainerColor = Color(0xffE5E5E5),
                         focusedBorderColor = Color(0xff000000),
                         unfocusedBorderColor = Color.Transparent,
-                        focusedTextColor = Color(0xff222222)
+                        focusedTextColor = Color(0xff222222),
+                        unfocusedTextColor = Color(0xff222222),
                     ),
                     maxLines = 1
                 )
@@ -172,7 +179,8 @@ fun LoginScreen(navController: NavController) {
                         unfocusedContainerColor = Color(0xffE5E5E5),
                         focusedBorderColor = Color(0xff000000),
                         unfocusedBorderColor = Color.Transparent,
-                        focusedTextColor = Color(0xff222222)
+                        focusedTextColor = Color(0xff222222),
+                        unfocusedTextColor = Color(0xff222222),
                     ),
                     maxLines = 1
                 )
@@ -207,7 +215,44 @@ fun LoginScreen(navController: NavController) {
 
                 GradientButton(onClick = {
 
-                    Login(navController, email.value, password.value)
+                    if(email.value.isEmpty() || password.value.isEmpty()){
+
+                    }
+                    else{
+
+                        val callClient = RetrofitFactory().createClientService().getClientByEmail(email.value)
+
+                        callClient.enqueue(object : Callback<Client> {
+                            override fun onResponse(p0: Call<Client>, p1: Response<Client>) {
+                                client = p1.body()!!
+                            }
+
+                            override fun onFailure(p0: Call<Client>, p1: Throwable) {
+
+                            }
+                        })
+
+
+                        val callFreelancer = RetrofitFactory().createFreelancerService().getFreelancerByEmail(email.value)
+
+                        callFreelancer.enqueue(object : Callback<Freelancer> {
+                            override fun onResponse(p0: Call<Freelancer>, p1: Response<Freelancer>) {
+                                freelancer = p1.body()!!
+                            }
+
+                            override fun onFailure(p0: Call<Freelancer>, p1: Throwable) {
+
+                            }
+
+                        })
+
+                        if(client.email_cliente == email.value && client.senha_cliente == password.value){
+                            navController.navigate("ClientHome")
+                        } else if (freelancer.email_freelancer == email.value && freelancer.senha_freelancer == password.value){
+                            navController.navigate("FreelancerHome")
+                        }
+
+                    }
                 }, text = stringResource(id = R.string.continue_))
             }
 
@@ -217,51 +262,6 @@ fun LoginScreen(navController: NavController) {
 
 }
 
-@Composable
-fun Login(navController: NavController, email: String, password: String) {
 
-    if(email.isEmpty() || password.isEmpty()){
 
-    }
-    else{
-
-        var client by remember {
-            mutableStateOf(Client())
-        }
-        val callClient = RetrofitFactory().createClientService().getClientByEmail(email)
-
-        callClient.enqueue(object : Callback<Client> {
-            override fun onResponse(p0: Call<Client>, p1: Response<Client>) {
-                client = p1.body()!!
-            }
-
-            override fun onFailure(p0: Call<Client>, p1: Throwable) {
-
-            }
-        })
-
-        var freelancer by remember {
-            mutableStateOf(Freelancer())
-        }
-        val callFreelancer = RetrofitFactory().createFreelancerService().getFreelancerByEmail(email)
-
-        callFreelancer.enqueue(object : Callback<Freelancer> {
-            override fun onResponse(p0: Call<Freelancer>, p1: Response<Freelancer>) {
-                freelancer = p1.body()!!
-            }
-
-            override fun onFailure(p0: Call<Freelancer>, p1: Throwable) {
-
-            }
-
-        })
-
-        if(client.email_cliente == email && client.senha_cliente == password){
-            navController.navigate("ClientHome")
-        } else if (freelancer.email_freelancer == email && freelancer.senha_freelancer == password){
-            navController.navigate("FreelancerHome")
-        }
-
-    }
-}
 

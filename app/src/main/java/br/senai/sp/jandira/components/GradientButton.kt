@@ -21,7 +21,7 @@ import br.senai.sp.jandira.ui.theme.BalooTammudu
 
 @Composable
 fun GradientButton(
-    onClick: @Composable () -> Unit,
+    onClick: () -> Unit,
     text: String
 ) {
 
