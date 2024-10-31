@@ -70,8 +70,7 @@ fun ClientHomeScreen() {
 
     Surface (
         modifier = Modifier
-            .fillMaxSize(),
-        color = Color(0xffFFFFFF)
+            .fillMaxSize()
     ){
 
         Column (

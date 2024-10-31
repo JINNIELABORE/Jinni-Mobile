@@ -35,8 +35,7 @@ fun ClientSignUp(navController: NavController, clientViewModel: ClientViewModel)
     var confirmPassword by remember { mutableStateOf("") }
 
     Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = Color(0xffFFFFFF)
+        modifier = Modifier.fillMaxSize()
     ) {
 
         Column(modifier = Modifier.fillMaxSize()) {

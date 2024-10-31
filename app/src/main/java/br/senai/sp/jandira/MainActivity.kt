@@ -21,6 +21,7 @@ import br.senai.sp.jandira.screens.ClientHomeScreen
 import br.senai.sp.jandira.screens.ClientSignUp
 import br.senai.sp.jandira.screens.FirstPageScreen
 import br.senai.sp.jandira.screens.FreelanceHomeScreen
+import br.senai.sp.jandira.screens.FreelancerProfile
 import br.senai.sp.jandira.screens.FreelancerSignUp
 import br.senai.sp.jandira.screens.LoginScreen
 import br.senai.sp.jandira.screens.ProjectsScreen
@@ -40,7 +41,7 @@ class MainActivity : ComponentActivity() {
                 val clientViewModel = ClientViewModel()
                 NavHost(
                     navController = navController,
-                    startDestination = "FirstPage"
+                    startDestination = "FreelancerHome",
                 ){
                     composable(route = "FirstPage") { FirstPageScreen(navController) }
                     composable(route = "SignUpMethod") { SignUpMethodChoiceScreen(navController) }
@@ -54,6 +55,7 @@ class MainActivity : ComponentActivity() {
                     composable(route = "ProjectsScreen"){ ProjectsScreen() }
                     composable(route = "ClientHome"){ ClientHomeScreen() }
                     composable(route = "Birthday"){ BirthdayScreen() }
+                    composable(route = "FreelancerProfile"){ FreelancerProfile() }
 
 
                     }

@@ -9,6 +9,7 @@ import br.senai.sp.jandira.R
 
 val Poppins = FontFamily(
     Font(R.font.poppins, weight = FontWeight.Normal),
+    Font(R.font.poppins_medium, weight = FontWeight.Medium),
     Font(R.font.poppins_semibold, weight = FontWeight.SemiBold)
 )
 

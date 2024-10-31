@@ -42,8 +42,7 @@ fun AddCnpj(navController: NavController, clientViewModel: ClientViewModel) {
     val retrofitFactory = RetrofitFactory()
 
     Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = Color(0xffFFFFFF)
+        modifier = Modifier.fillMaxSize()
     ) {
 
         Column(modifier = Modifier.fillMaxSize()) {

@@ -54,8 +54,7 @@ fun ChatListScreen(navController: NavController) {
     }
     Surface (
         modifier = Modifier
-            .fillMaxSize(),
-        color = Color(0xffFFFFFF)
+            .fillMaxSize()
     ){
         Column (
             modifier = Modifier
@@ -67,7 +66,7 @@ fun ChatListScreen(navController: NavController) {
                     .padding(top = 50.dp, start = 10.dp)
             ) {
                 IconButton(onClick = {
-                  navController.navigate("Home")
+                  navController.navigate("FreelancerHome")
                 }) {
                     Icon(
                         imageVector = Icons.Outlined.ArrowBackIosNew,

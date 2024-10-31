@@ -35,8 +35,7 @@ fun BirthdayScreen() {
 
     Surface (
         modifier = Modifier
-            .fillMaxSize(),
-        color = Color(0xffFFFFFF)
+            .fillMaxSize()
     ){
         Column (
             modifier = Modifier

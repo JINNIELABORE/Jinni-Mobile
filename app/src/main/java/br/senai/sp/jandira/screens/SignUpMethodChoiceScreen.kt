@@ -38,8 +38,7 @@ fun SignUpMethodChoiceScreen(navController: NavController) {
 
     Surface (
         modifier = Modifier
-            .fillMaxSize(),
-        color = Color(0xffFFFFFF)
+            .fillMaxSize()
     ){
 
        Column (

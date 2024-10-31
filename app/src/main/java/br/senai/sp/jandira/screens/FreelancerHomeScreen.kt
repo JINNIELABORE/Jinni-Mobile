@@ -47,8 +47,7 @@ fun FreelanceHomeScreen(navController: NavController) {
 
     Surface(
         modifier = Modifier
-            .fillMaxSize(),
-        color = Color(0xffFFFFFF),
+            .fillMaxSize()
     ) {
 
         Column (
@@ -72,7 +71,10 @@ fun FreelanceHomeScreen(navController: NavController) {
                     Card (
                         modifier = Modifier
                             .height(40.dp)
-                            .width(40.dp),
+                            .width(40.dp)
+                            .clickable {
+                                navController.navigate("FreelancerProfile")
+                            },
                         shape = CircleShape
                     ){
                         Image(
@@ -233,7 +235,7 @@ fun FreelanceHomeScreen(navController: NavController) {
                                 .height(25.dp)
                                 .width(25.dp)
                                 .clickable {
-                                    navController.navigate("Home")
+                                    navController.navigate("FreelanceHomeScreen")
                                 })
                         Image(
                             painter = painterResource(id = R.drawable.conversa),
