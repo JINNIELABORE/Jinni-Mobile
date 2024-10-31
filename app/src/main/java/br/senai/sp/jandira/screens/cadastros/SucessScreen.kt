@@ -1,4 +1,4 @@
-package br.senai.sp.jandira.screens
+package br.senai.sp.jandira.screens.cadastros
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

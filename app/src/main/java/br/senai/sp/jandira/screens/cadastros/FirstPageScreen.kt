@@ -1,8 +1,7 @@
-package br.senai.sp.jandira.screens
+package br.senai.sp.jandira.screens.cadastros
 
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.material3.Surface
 import androidx.compose.foundation.layout.Column
@@ -29,7 +28,6 @@ import androidx.navigation.NavController
 import br.senai.sp.jandira.R
 import br.senai.sp.jandira.components.GradientButton
 import br.senai.sp.jandira.ui.theme.BalooTammudu
-import br.senai.sp.jandira.ui.theme.Tamma
 
 @Composable
 fun FirstPageScreen(navController: NavController) {

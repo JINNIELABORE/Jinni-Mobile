@@ -1,9 +1,8 @@
-package br.senai.sp.jandira.screens
+package br.senai.sp.jandira.screens.cadastros
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.ArrowBackIosNew
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Lock
@@ -22,7 +21,6 @@ import androidx.navigation.NavController
 import br.senai.sp.jandira.R
 import br.senai.sp.jandira.components.GradientButton
 import br.senai.sp.jandira.ui.theme.BalooTammudu
-import br.senai.sp.jandira.ui.theme.Gradient
 import br.senai.sp.jandira.ui.theme.Poppins
 import br.senai.sp.jandira.viewmodel.ClientViewModel
 

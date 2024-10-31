@@ -70,6 +70,7 @@ dependencies {
 
     implementation(libs.androidx.navigation.compose.v281)
     implementation("androidx.compose.material:material-icons-extended-android:1.7.2")
+    implementation("network.chaintech:kmp-date-time-picker:1.0.6")
 
     implementation(libs.retrofit)
     implementation(libs.converter.gson)

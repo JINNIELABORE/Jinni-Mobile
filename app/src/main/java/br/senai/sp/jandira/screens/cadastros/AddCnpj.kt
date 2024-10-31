@@ -1,14 +1,12 @@
-package br.senai.sp.jandira.screens
+package br.senai.sp.jandira.screens.cadastros
 
 import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.ArrowBackIosNew
 import androidx.compose.material.icons.outlined.CorporateFare
-import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -27,7 +25,6 @@ import br.senai.sp.jandira.components.GradientButton
 import br.senai.sp.jandira.ui.theme.BalooTammudu
 import br.senai.sp.jandira.ui.theme.Poppins
 import br.senai.sp.jandira.viewmodel.ClientViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import br.senai.sp.jandira.model.Client
 import br.senai.sp.jandira.service.RetrofitFactory
 import retrofit2.Call

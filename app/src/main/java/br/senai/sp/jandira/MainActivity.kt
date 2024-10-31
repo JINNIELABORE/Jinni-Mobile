@@ -4,29 +4,23 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.senai.sp.jandira.screens.AddCnpj
-import br.senai.sp.jandira.screens.BirthdayScreen
+import br.senai.sp.jandira.screens.cadastros.AddCnpj
+import br.senai.sp.jandira.screens.cadastros.BirthdayScreen
 import br.senai.sp.jandira.screens.ChatListScreen
-import br.senai.sp.jandira.screens.ClientHomeScreen
-import br.senai.sp.jandira.screens.ClientSignUp
-import br.senai.sp.jandira.screens.FirstPageScreen
-import br.senai.sp.jandira.screens.FreelanceHomeScreen
-import br.senai.sp.jandira.screens.FreelancerProfile
-import br.senai.sp.jandira.screens.FreelancerSignUp
-import br.senai.sp.jandira.screens.LoginScreen
+import br.senai.sp.jandira.screens.client.ClientHomeScreen
+import br.senai.sp.jandira.screens.cadastros.ClientSignUp
+import br.senai.sp.jandira.screens.cadastros.FirstPageScreen
+import br.senai.sp.jandira.screens.freelancer.FreelanceHomeScreen
+import br.senai.sp.jandira.screens.freelancer.FreelancerProfile
+import br.senai.sp.jandira.screens.cadastros.FreelancerSignUp
+import br.senai.sp.jandira.screens.cadastros.LoginScreen
 import br.senai.sp.jandira.screens.ProjectsScreen
-import br.senai.sp.jandira.screens.SignUpMethodChoiceScreen
-import br.senai.sp.jandira.screens.Sucess
+import br.senai.sp.jandira.screens.cadastros.SignUpMethodChoiceScreen
+import br.senai.sp.jandira.screens.cadastros.Sucess
+import br.senai.sp.jandira.screens.client.ClientProfile
 import br.senai.sp.jandira.ui.theme.JinniTheme
 import br.senai.sp.jandira.viewmodel.ClientViewModel
 
@@ -41,21 +35,30 @@ class MainActivity : ComponentActivity() {
                 val clientViewModel = ClientViewModel()
                 NavHost(
                     navController = navController,
-                    startDestination = "FreelancerHome",
+                    startDestination = "Birthday",
                 ){
                     composable(route = "FirstPage") { FirstPageScreen(navController) }
                     composable(route = "SignUpMethod") { SignUpMethodChoiceScreen(navController) }
                     composable(route = "FreelancerSignUp") { FreelancerSignUp(navController) }
                     composable(route = "ClientSignUp") { ClientSignUp(navController, clientViewModel = clientViewModel ) }
-                    composable(route = "AddCnpj") { AddCnpj(navController , clientViewModel = clientViewModel)}
-                    composable(route = "SuccessScreen") { Sucess()}
-                    composable(route = "SignIn") { LoginScreen(navController)}
-                    composable(route = "FreelancerHome"){ FreelanceHomeScreen(navController) }
+                    composable(route = "AddCnpj") { AddCnpj(navController , clientViewModel = clientViewModel) }
+                    composable(route = "SuccessScreen") { Sucess() }
+                    composable(route = "SignIn") { LoginScreen(navController) }
+
                     composable(route = "ChatList"){ ChatListScreen(navController) }
                     composable(route = "ProjectsScreen"){ ProjectsScreen() }
-                    composable(route = "ClientHome"){ ClientHomeScreen() }
                     composable(route = "Birthday"){ BirthdayScreen() }
-                    composable(route = "FreelancerProfile"){ FreelancerProfile() }
+
+                    //CLIENT
+                    composable(route = "ClientHome"){ ClientHomeScreen() }
+                    composable(route = "ClientProfile"){ ClientProfile(navController) }
+
+
+
+                    //FREELANCER
+                    composable(route = "FreelancerProfile"){ FreelancerProfile(navController) }
+                    composable(route = "FreelancerHome"){ FreelanceHomeScreen(navController) }
+
 
 
                     }

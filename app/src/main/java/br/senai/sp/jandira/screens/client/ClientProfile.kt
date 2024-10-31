@@ -1,4 +1,4 @@
-package br.senai.sp.jandira.screens
+package br.senai.sp.jandira.screens.client
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -16,11 +16,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBackIosNew
-import androidx.compose.material.icons.outlined.Create
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -31,19 +29,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import br.senai.sp.jandira.R
 import br.senai.sp.jandira.ui.theme.BalooTammudu
 import br.senai.sp.jandira.ui.theme.Poppins
 
 @Composable
-fun FreelancerProfile() {
+fun ClientProfile(navController: NavController) {
+
 
     Surface (
         modifier = Modifier
@@ -62,7 +60,7 @@ fun FreelancerProfile() {
                 horizontalArrangement = Arrangement.SpaceBetween
             ){
                 IconButton(onClick = {
-                    //    navController.navigate("SignUpMethod")
+                    navController.navigate("ClientHome")
                 }) {
                     Icon(
                         imageVector = Icons.Outlined.ArrowBackIosNew,
@@ -71,11 +69,11 @@ fun FreelancerProfile() {
                     )
                 }
                 IconButton(onClick = {
-                    //    navController.navigate("SignUpMethod")
+                    navController.navigate("SignUpMethod")
                 }) {
                     Icon(
                         imageVector = Icons.Outlined.Edit,
-                        contentDescription = "seta",
+                        contentDescription = "caneta",
                         tint = Color(0xff011F4B)
                     )
                 }
@@ -132,23 +130,28 @@ fun FreelancerProfile() {
                         Icon(
                             imageVector = Icons.Outlined.Star,
                             contentDescription = "star",
-                            tint = Color(0xffFFC107))
+                            tint = Color(0xffFFC107)
+                        )
                         Icon(
                             imageVector = Icons.Outlined.Star,
                             contentDescription = "star",
-                            tint = Color(0xffFFC107))
+                            tint = Color(0xffFFC107)
+                        )
                         Icon(
                             imageVector = Icons.Outlined.Star,
                             contentDescription = "star",
-                            tint = Color(0xffFFC107))
+                            tint = Color(0xffFFC107)
+                        )
                         Icon(
                             imageVector = Icons.Outlined.Star,
                             contentDescription = "star",
-                            tint = Color(0xffFFC107))
+                            tint = Color(0xffFFC107)
+                        )
                         Icon(
                             imageVector = Icons.Outlined.Star,
                             contentDescription = "star",
-                            tint = Color(0xffFFC107))
+                            tint = Color(0xffFFC107)
+                        )
 
 
                     }// Estrelas
@@ -169,34 +172,34 @@ fun FreelancerProfile() {
                         ),
                     colors = CardDefaults.cardColors(Color.Transparent)
 
-                            ) {
+                ) {
 
-                            Column (
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .padding(top = 20.dp, start = 40.dp, end = 40.dp),
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ){
+                    Column (
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(top = 20.dp, start = 40.dp, end = 40.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ){
 
-                                Text(
-                                    text = "Sobre a empresa:",
-                                    fontSize = 18.sp,
-                                    fontFamily = Poppins,
-                                    fontWeight = FontWeight.Medium,
-                                    color = Color(0xffFFFFFF)
-                                )
+                        Text(
+                            text = "Sobre a empresa:",
+                            fontSize = 18.sp,
+                            fontFamily = Poppins,
+                            fontWeight = FontWeight.Medium,
+                            color = Color(0xffFFFFFF)
+                        )
 
-                                Spacer(modifier = Modifier.height(15.dp))
+                        Spacer(modifier = Modifier.height(15.dp))
 
-                                Text(
-                                    text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut consequat enim, vitae venenatis urna. Mauris iaculis tellus orci, vitae elementum est auctor a. Vestibulum eget molestie ante. Ut consequat placerat justo et aliquet. ",
-                                    fontSize = 13.sp,
-                                    fontFamily = Poppins,
-                                    fontWeight = FontWeight.Normal,
-                                    color = Color(0xffEEEEEE)
-                                )
-                            }
-                        }
+                        Text(
+                            text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut consequat enim, vitae venenatis urna. Mauris iaculis tellus orci, vitae elementum est auctor a. Vestibulum eget molestie ante. Ut consequat placerat justo et aliquet. ",
+                            fontSize = 13.sp,
+                            fontFamily = Poppins,
+                            fontWeight = FontWeight.Normal,
+                            color = Color(0xffEEEEEE)
+                        )
+                    }
+                }
 
             }
 
@@ -207,11 +210,5 @@ fun FreelancerProfile() {
 
     }
 
-}
-
-@Preview (showBackground = true, showSystemUi = true)
-@Composable
-private fun Profile() {
-    FreelancerProfile()
 
 }
