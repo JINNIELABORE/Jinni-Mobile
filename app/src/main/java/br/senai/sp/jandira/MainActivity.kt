@@ -9,7 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.senai.sp.jandira.screens.cadastros.AddCnpj
 import br.senai.sp.jandira.screens.cadastros.BirthdayScreen
-import br.senai.sp.jandira.screens.ChatListScreen
+import br.senai.sp.jandira.screens.chat.ChatListScreen
 import br.senai.sp.jandira.screens.client.ClientHomeScreen
 import br.senai.sp.jandira.screens.cadastros.ClientSignUp
 import br.senai.sp.jandira.screens.cadastros.FirstPageScreen
@@ -20,6 +20,7 @@ import br.senai.sp.jandira.screens.cadastros.LoginScreen
 import br.senai.sp.jandira.screens.ProjectsScreen
 import br.senai.sp.jandira.screens.cadastros.SignUpMethodChoiceScreen
 import br.senai.sp.jandira.screens.cadastros.Sucess
+import br.senai.sp.jandira.screens.chat.Chat
 import br.senai.sp.jandira.screens.client.ClientProfile
 import br.senai.sp.jandira.ui.theme.JinniTheme
 import br.senai.sp.jandira.viewmodel.ClientViewModel
@@ -35,7 +36,7 @@ class MainActivity : ComponentActivity() {
                 val clientViewModel = ClientViewModel()
                 NavHost(
                     navController = navController,
-                    startDestination = "Birthday",
+                    startDestination = "Chat",
                 ){
                     composable(route = "FirstPage") { FirstPageScreen(navController) }
                     composable(route = "SignUpMethod") { SignUpMethodChoiceScreen(navController) }
@@ -58,6 +59,10 @@ class MainActivity : ComponentActivity() {
                     //FREELANCER
                     composable(route = "FreelancerProfile"){ FreelancerProfile(navController) }
                     composable(route = "FreelancerHome"){ FreelanceHomeScreen(navController) }
+
+
+                    //CHAT
+                    composable(route = "Chat") { Chat() }
 
 
 
