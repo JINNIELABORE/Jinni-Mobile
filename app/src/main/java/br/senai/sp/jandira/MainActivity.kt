@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
                 val clientViewModel = ClientViewModel()
                 NavHost(
                     navController = navController,
-                    startDestination = "Chat",
+                    startDestination = "Birthday",
                 ){
                     composable(route = "FirstPage") { FirstPageScreen(navController) }
                     composable(route = "SignUpMethod") { SignUpMethodChoiceScreen(navController) }

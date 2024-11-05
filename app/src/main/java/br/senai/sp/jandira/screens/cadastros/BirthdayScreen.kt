@@ -1,15 +1,26 @@
 package br.senai.sp.jandira.screens.cadastros
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBackIosNew
+import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -21,6 +32,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -33,6 +45,7 @@ import androidx.compose.ui.unit.sp
 import br.senai.sp.jandira.R
 import br.senai.sp.jandira.ui.theme.BalooTammudu
 import br.senai.sp.jandira.ui.theme.Poppins
+import br.senai.sp.jandira.viewmodel.FreelancerViewModel
 import kotlinx.datetime.LocalDate
 import network.chaintech.kmp_date_time_picker.ui.datepicker.WheelDatePickerView
 import network.chaintech.kmp_date_time_picker.utils.DateTimePickerView
@@ -42,6 +55,10 @@ import network.chaintech.kmp_date_time_picker.utils.now
 fun BirthdayScreen() {
 
     var showDatePicker by remember { mutableStateOf(false) }
+
+    var datanasc = remember {
+        mutableStateOf("")
+    }
 
     Surface (
         modifier = Modifier
@@ -96,75 +113,141 @@ fun BirthdayScreen() {
                         color = Color(0xff6F6F6F)
                     )
 
-                    OutlinedTextField(
-                        value = "",
-                        onValueChange = { },
+                    Row (
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ){
+
+                        OutlinedTextField(
+                            value = datanasc.value,
+                            onValueChange = {
+                                datanasc.value = it
+                            },
+                            modifier = Modifier
+                                .width(220.dp)
+                                .padding(vertical = 5.dp),
+                            shape = RoundedCornerShape(10.dp),
+                            readOnly = true,
+                            colors = OutlinedTextFieldDefaults.colors(
+                                focusedContainerColor = Color(0xffE5E5E5),
+                                unfocusedContainerColor = Color(0xffE5E5E5),
+                                focusedBorderColor = Color(0xff000000),
+                                unfocusedBorderColor = Color.Transparent,
+                                focusedTextColor = Color(0xff222222)
+                            ),
+                            maxLines = 1
+                        )
+
+                        WheelDatePickerView(
+                            showDatePicker = showDatePicker,
+                            height = 200.dp,
+                            title = stringResource(id = R.string.birthday),
+                            titleStyle = TextStyle(
+                                fontSize = 20.sp,
+                                fontFamily = BalooTammudu,
+                                fontWeight = FontWeight.Medium,
+                                brush = Brush.linearGradient(
+                                    listOf(
+                                        Color(0xff011F4B),
+                                        Color(0xff005B96)
+                                    )
+                                )
+                            ),
+                            dateTimePickerView = DateTimePickerView.BOTTOM_SHEET_VIEW,
+                            rowCount = 3,
+                            dateTextStyle = TextStyle(
+                                fontSize = 15.sp,
+                                fontFamily = Poppins,
+                                fontWeight = FontWeight.Normal
+                            ),
+                            yearsRange = 1920..LocalDate.now().year,
+                            onDoneClick = {
+                                showDatePicker = false
+                                println("Done: $it")
+                                datanasc.value = "${it.dayOfMonth}/${it.monthNumber}/${it.year}"
+                            },
+                            onDismiss = {
+                                showDatePicker = false
+                                println("Dismissed.")
+                            })
+
+                        Card (
+                            modifier = Modifier
+                                .height(55.dp)
+                                .width(55.dp)
+                                .clickable {
+                                    showDatePicker = true
+                                }
+                                .background(
+                                    brush = Brush.linearGradient(
+                                        listOf(
+                                            Color(0xff011F4B),
+                                            Color(0xff005B96)
+                                        )
+                                    ),
+                                    shape = RoundedCornerShape(10.dp)
+                                ),
+                            colors = CardDefaults.cardColors(
+                                containerColor = Color.Transparent
+                            )
+                        ){
+                            Column (
+                                modifier = Modifier
+                                    .fillMaxSize(),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                            ){
+                                Icon(
+                                    imageVector = Icons.Outlined.CalendarMonth,
+                                    contentDescription = "Name",
+                                    tint = Color(0xffFFFFFF),
+                                    modifier = Modifier
+                                        .size(25.dp)
+                                )
+                            }
+                        }
+
+
+                    }
+
+                    Row (
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = 5.dp),
-                        shape = RoundedCornerShape(10.dp),
-                        placeholder = {
-                            Text(
-                                text = stringResource(id = R.string.name),
-                                color = Color(0xff222222),
-                                fontFamily = Poppins,
-                            )
-                        },
-                        leadingIcon = {
-                            Icon(
-                                imageVector = Icons.Outlined.Person,
-                                contentDescription = "Name",
-                                tint = Color(0xff222222)
-                            )
-                        },
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedContainerColor = Color(0xffE5E5E5),
-                            unfocusedContainerColor = Color(0xffE5E5E5),
-                            focusedBorderColor = Color(0xff000000),
-                            unfocusedBorderColor = Color.Transparent,
-                            focusedTextColor = Color(0xff222222)
-                        ),
-                        maxLines = 1
-                    )
+                    ){
 
-                    WheelDatePickerView(
-                        showDatePicker = showDatePicker,
-                        height = 300.dp,
-                        title = stringResource(id = R.string.birthday),
-                        titleStyle = TextStyle(
-                            fontSize = 20.sp,
-                            fontFamily = BalooTammudu,
-                            fontWeight = FontWeight.Medium,
-                            brush = Brush.linearGradient(
-                                listOf(
-                                    Color(0xff011F4B),
-                                    Color(0xff005B96)
-                                )
-                            )
-                        ),
-                        dateTimePickerView = DateTimePickerView.BOTTOM_SHEET_VIEW,
-                        rowCount = 3,
-                        dateTextStyle = TextStyle(
-                            fontSize = 15.sp,
-                            fontFamily = Poppins,
-                            fontWeight = FontWeight.Normal
-                        ),
-                        yearsRange = 1920..LocalDate.now().year,
-                        onDoneClick = {
-                            showDatePicker = false
-                            println("Done: $it")
-                        },
-                        onDismiss = {
-                            showDatePicker = false
-                            println("Dismissed.")
-                        })
+                        Button(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .background(
+                                    brush = Brush.linearGradient(
+                                        listOf(
+                                            Color(0xff011F4B),
+                                            Color(0xff005B96)
+                                        )
+                                    ),
+                                    shape = RoundedCornerShape(10.dp)
+                                ),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.Transparent
+                            ),
+                            onClick = {
+                                if (datanasc.value.isNotEmpty()){
+                                    FreelancerViewModel().addBirthday(datanasc.value)
 
-                    Button(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        onClick = { showDatePicker = true }) {
-                        
+                                }
+                            }) {
+
+
+                        }
                     }
+
+
+
+
+
+
+
 
                 }
             }

@@ -38,6 +38,7 @@ import br.senai.sp.jandira.model.Freelancer
 import br.senai.sp.jandira.service.RetrofitFactory
 import br.senai.sp.jandira.ui.theme.BalooTammudu
 import br.senai.sp.jandira.ui.theme.Poppins
+import br.senai.sp.jandira.viewmodel.FreelancerViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -296,12 +297,8 @@ fun FreelancerSignUp(navController: NavController) {
                             (freelancerName.value.isNotEmpty() && freelancerEmail.value.isNotEmpty() && freelancerPassword.value.isNotEmpty() && freelancerConfirmPassword.value.isNotEmpty()) &&
                             (freelancerPassword.value == freelancerConfirmPassword.value)){
 
-                            val freelancer = Freelancer(
-                                nome_freelancer = freelancerName.value,
-                                email_freelancer = freelancerEmail.value,
-                                senha_freelancer = freelancerPassword.value,
-                                cpf_freelancer = freelancerCpf.value
-                            )
+                            FreelancerViewModel().setFreelancerData(freelancerName.value,freelancerEmail.value ,freelancerCpf.value, freelancerPassword.value)
+                            val freelancer = FreelancerViewModel().freelancerData.value
                             val freelancerService = retrofitFactory.createFreelancerService()
 
                             freelancerService.postFreelancer(freelancer).enqueue(object : Callback<Freelancer> {
