@@ -42,7 +42,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import br.senai.sp.jandira.R
+import br.senai.sp.jandira.components.GradientButton
 import br.senai.sp.jandira.ui.theme.BalooTammudu
 import br.senai.sp.jandira.ui.theme.Poppins
 import br.senai.sp.jandira.viewmodel.FreelancerViewModel
@@ -52,7 +54,7 @@ import network.chaintech.kmp_date_time_picker.utils.DateTimePickerView
 import network.chaintech.kmp_date_time_picker.utils.now
 
 @Composable
-fun BirthdayScreen() {
+fun BirthdayScreen(navController: NavController) {
 
     var showDatePicker by remember { mutableStateOf(false) }
 
@@ -216,30 +218,18 @@ fun BirthdayScreen() {
                             .fillMaxWidth()
                     ){
 
-                        Button(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .background(
-                                    brush = Brush.linearGradient(
-                                        listOf(
-                                            Color(0xff011F4B),
-                                            Color(0xff005B96)
-                                        )
-                                    ),
-                                    shape = RoundedCornerShape(10.dp)
-                                ),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = Color.Transparent
-                            ),
+                        GradientButton(
                             onClick = {
-                                if (datanasc.value.isNotEmpty()){
+
+                                if(datanasc.value.isNotEmpty()){
                                     FreelancerViewModel().addBirthday(datanasc.value)
-
+                                    navController.navigate("FreelancerSignUp")
                                 }
-                            }) {
+                            },
+                            text = stringResource(id = R.string.continue_)
+                        )
 
 
-                        }
                     }
 
 
@@ -265,8 +255,3 @@ fun BirthdayScreen() {
 
 }
 
-@Preview (showBackground = true, showSystemUi = true)
-@Composable
-private fun Bday() {
-    BirthdayScreen()
-}

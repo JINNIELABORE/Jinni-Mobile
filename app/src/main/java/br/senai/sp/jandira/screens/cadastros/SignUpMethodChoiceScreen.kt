@@ -110,7 +110,7 @@ fun SignUpMethodChoiceScreen(navController: NavController) {
                Spacer(modifier = Modifier.height(50.dp))
                Card(
                    onClick = {
-                       navController.navigate("FreelancerSignUp")
+                       navController.navigate("Birthday")
                    },
                    modifier = Modifier
                        .height(150.dp)

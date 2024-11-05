@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
                 val clientViewModel = ClientViewModel()
                 NavHost(
                     navController = navController,
-                    startDestination = "Birthday",
+                    startDestination = "FirstPage",
                 ){
                     composable(route = "FirstPage") { FirstPageScreen(navController) }
                     composable(route = "SignUpMethod") { SignUpMethodChoiceScreen(navController) }
@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
 
                     composable(route = "ChatList"){ ChatListScreen(navController) }
                     composable(route = "ProjectsScreen"){ ProjectsScreen() }
-                    composable(route = "Birthday"){ BirthdayScreen() }
+                    composable(route = "Birthday"){ BirthdayScreen(navController) }
 
                     //CLIENT
                     composable(route = "ClientHome"){ ClientHomeScreen() }
