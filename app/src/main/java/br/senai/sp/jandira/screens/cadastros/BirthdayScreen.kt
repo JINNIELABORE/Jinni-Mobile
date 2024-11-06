@@ -54,7 +54,7 @@ import network.chaintech.kmp_date_time_picker.utils.DateTimePickerView
 import network.chaintech.kmp_date_time_picker.utils.now
 
 @Composable
-fun BirthdayScreen(navController: NavController) {
+fun BirthdayScreen(navController: NavController, freelancerViewModel: FreelancerViewModel) {
 
     var showDatePicker by remember { mutableStateOf(false) }
 

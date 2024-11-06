@@ -44,7 +44,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 @Composable
-fun FreelancerSignUp(navController: NavController) {
+fun FreelancerSignUp(navController: NavController, freelancerViewModel: FreelancerViewModel) {
 
     val context = LocalContext.current
     val retrofitFactory = RetrofitFactory()

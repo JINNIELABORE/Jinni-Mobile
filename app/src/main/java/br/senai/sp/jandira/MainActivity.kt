@@ -24,6 +24,7 @@ import br.senai.sp.jandira.screens.chat.Chat
 import br.senai.sp.jandira.screens.client.ClientProfile
 import br.senai.sp.jandira.ui.theme.JinniTheme
 import br.senai.sp.jandira.viewmodel.ClientViewModel
+import br.senai.sp.jandira.viewmodel.FreelancerViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,13 +35,14 @@ class MainActivity : ComponentActivity() {
 
                 val  navController = rememberNavController()
                 val clientViewModel = ClientViewModel()
+                val freelancerViewModel = FreelancerViewModel()
                 NavHost(
                     navController = navController,
                     startDestination = "FirstPage",
                 ){
                     composable(route = "FirstPage") { FirstPageScreen(navController) }
                     composable(route = "SignUpMethod") { SignUpMethodChoiceScreen(navController) }
-                    composable(route = "FreelancerSignUp") { FreelancerSignUp(navController) }
+                    composable(route = "FreelancerSignUp") { FreelancerSignUp(navController, freelancerViewModel = freelancerViewModel) }
                     composable(route = "ClientSignUp") { ClientSignUp(navController, clientViewModel = clientViewModel ) }
                     composable(route = "AddCnpj") { AddCnpj(navController , clientViewModel = clientViewModel) }
                     composable(route = "SuccessScreen") { Sucess() }
@@ -48,7 +50,7 @@ class MainActivity : ComponentActivity() {
 
                     composable(route = "ChatList"){ ChatListScreen(navController) }
                     composable(route = "ProjectsScreen"){ ProjectsScreen() }
-                    composable(route = "Birthday"){ BirthdayScreen(navController) }
+                    composable(route = "Birthday"){ BirthdayScreen(navController, freelancerViewModel = freelancerViewModel) }
 
                     //CLIENT
                     composable(route = "ClientHome"){ ClientHomeScreen() }
