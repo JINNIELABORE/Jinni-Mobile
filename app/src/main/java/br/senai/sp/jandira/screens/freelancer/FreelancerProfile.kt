@@ -61,7 +61,7 @@ fun FreelancerProfile(navController: NavController) {
                 horizontalArrangement = Arrangement.SpaceBetween
             ){
                 IconButton(onClick = {
-                        navController.navigate("FreelancerHome")
+   //                     navController.navigate("FreelancerHome")
                 }) {
                     Icon(
                         imageVector = Icons.Outlined.ArrowBackIosNew,
@@ -70,7 +70,7 @@ fun FreelancerProfile(navController: NavController) {
                     )
                 }
                 IconButton(onClick = {
-                        navController.navigate("SignUpMethod")
+  //                      navController.navigate("SignUpMethod")
                 }) {
                     Icon(
                         imageVector = Icons.Outlined.Edit,
@@ -208,3 +208,4 @@ fun FreelancerProfile(navController: NavController) {
     }
 
 }
+

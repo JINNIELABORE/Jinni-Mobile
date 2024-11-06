@@ -65,9 +65,9 @@ fun AddCnpj(navController: NavController, clientViewModel: ClientViewModel) {
                 Column(modifier = Modifier.padding(horizontal = 35.dp)) {
                     Text(
                         text = stringResource(id = R.string.add_cnpj),
-                        fontSize = 32.sp,
-                        fontFamily = BalooTammudu,
-                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 24.sp,
+                        fontFamily = Poppins,
+                        fontWeight = FontWeight.Medium,
                         style = TextStyle(
                             brush = Brush.linearGradient(
                                 listOf(

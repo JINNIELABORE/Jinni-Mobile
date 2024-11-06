@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -69,13 +70,17 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.androidx.navigation.compose.v281)
-    implementation("androidx.compose.material:material-icons-extended-android:1.7.2")
-    implementation("network.chaintech:kmp-date-time-picker:1.0.6")
+    implementation(libs.androidx.material.icons.extended.android)
+    implementation(libs.kmp.date.time.picker)
 
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
     implementation(libs.coil.compose)
+
+    //firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
 
 
 }

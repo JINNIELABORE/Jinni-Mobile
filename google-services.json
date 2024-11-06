@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "45051186002",
+    "project_id": "jinni-elabore",
+    "storage_bucket": "jinni-elabore.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45051186002:android:79e292eeda5e449202888b",
+        "android_client_info": {
+          "package_name": "br.senai.sp.jandira"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuMUnEQYzOBcD8QOO5RM2q26NOXRsWBAc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

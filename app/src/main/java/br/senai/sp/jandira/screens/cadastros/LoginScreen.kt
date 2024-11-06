@@ -94,8 +94,8 @@ fun LoginScreen(navController: NavController) {
                 Text(
                     text = stringResource(id = R.string.sign_in),
                     fontSize = 24.sp,
-                    fontFamily = BalooTammudu,
-                    fontWeight = FontWeight.SemiBold,
+                    fontFamily = Poppins,
+                    fontWeight = FontWeight.Medium,
                     style = TextStyle(
                         brush = Brush.linearGradient(
                             listOf(

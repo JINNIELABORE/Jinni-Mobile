@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.screens.cadastros
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -36,9 +37,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -57,6 +60,8 @@ import network.chaintech.kmp_date_time_picker.utils.now
 fun BirthdayScreen(navController: NavController, freelancerViewModel: FreelancerViewModel) {
 
     var showDatePicker by remember { mutableStateOf(false) }
+    var showDialog by remember { mutableStateOf(false) }
+
 
     var datanasc = remember {
         mutableStateOf("")
@@ -77,7 +82,7 @@ fun BirthdayScreen(navController: NavController, freelancerViewModel: Freelancer
                     .padding(top = 65.dp, start = 10.dp)
             ) {
                 IconButton(onClick = {
- //                   navController.navigate("SignUpMethod")
+                    navController.navigate("SignUpMethod")
                 }) {
                     Icon(
                         imageVector = Icons.Outlined.ArrowBackIosNew,
@@ -92,12 +97,12 @@ fun BirthdayScreen(navController: NavController, freelancerViewModel: Freelancer
                 modifier = Modifier
                     .fillMaxWidth()
             ){
-                Column(modifier = Modifier.padding(horizontal = 35.dp)) {
+                Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 35.dp)) {
                     Text(
                         text = stringResource(id = R.string.get_started),
-                        fontSize = 32.sp,
-                        fontFamily = BalooTammudu,
-                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 24.sp,
+                        fontFamily = Poppins,
+                        fontWeight = FontWeight.Medium,
                         style = TextStyle(
                             brush = Brush.linearGradient(
                                 listOf(
@@ -115,6 +120,20 @@ fun BirthdayScreen(navController: NavController, freelancerViewModel: Freelancer
                         color = Color(0xff6F6F6F)
                     )
 
+                    Column (
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 70.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ){
+                        Image(
+                            painter = painterResource(id = R.drawable.party),
+                            contentDescription = "cake",
+                            modifier = Modifier
+                                .size(150.dp))
+                    }
+
+
                     Row (
                         modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
@@ -130,6 +149,13 @@ fun BirthdayScreen(navController: NavController, freelancerViewModel: Freelancer
                                 .width(220.dp)
                                 .padding(vertical = 5.dp),
                             shape = RoundedCornerShape(10.dp),
+                            placeholder = {
+                                Text(
+                                    text = stringResource(id = R.string.birthday),
+                                    color = Color(0xff222222),
+                                    fontFamily = Poppins,
+                                )
+                            },
                             readOnly = true,
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedContainerColor = Color(0xffE5E5E5),
@@ -138,7 +164,11 @@ fun BirthdayScreen(navController: NavController, freelancerViewModel: Freelancer
                                 unfocusedBorderColor = Color.Transparent,
                                 focusedTextColor = Color(0xff222222)
                             ),
-                            maxLines = 1
+                            maxLines = 1,
+                            textStyle = TextStyle(
+                                textAlign = TextAlign.Center,
+                                fontSize = 16.sp
+                            )
                         )
 
                         WheelDatePickerView(
@@ -156,7 +186,7 @@ fun BirthdayScreen(navController: NavController, freelancerViewModel: Freelancer
                                     )
                                 )
                             ),
-                            dateTimePickerView = DateTimePickerView.BOTTOM_SHEET_VIEW,
+                            dateTimePickerView = DateTimePickerView.DIALOG_VIEW,
                             rowCount = 3,
                             dateTextStyle = TextStyle(
                                 fontSize = 15.sp,
@@ -168,6 +198,7 @@ fun BirthdayScreen(navController: NavController, freelancerViewModel: Freelancer
                                 showDatePicker = false
                                 println("Done: $it")
                                 datanasc.value = "${it.dayOfMonth}/${it.monthNumber}/${it.year}"
+
                             },
                             onDismiss = {
                                 showDatePicker = false
@@ -213,24 +244,7 @@ fun BirthdayScreen(navController: NavController, freelancerViewModel: Freelancer
 
                     }
 
-                    Row (
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    ){
 
-                        GradientButton(
-                            onClick = {
-
-                                if(datanasc.value.isNotEmpty()){
-                                    FreelancerViewModel().addBirthday(datanasc.value)
-                                    navController.navigate("FreelancerSignUp")
-                                }
-                            },
-                            text = stringResource(id = R.string.continue_)
-                        )
-
-
-                    }
 
 
 
@@ -248,6 +262,27 @@ fun BirthdayScreen(navController: NavController, freelancerViewModel: Freelancer
 
 
 
+
+
+        }
+
+        Row (
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 60.dp, vertical = 35.dp),
+            verticalAlignment = Alignment.Bottom
+        ){
+
+            GradientButton(
+                onClick = {
+
+                    if(datanasc.value.isNotEmpty()){
+                        FreelancerViewModel().addBirthday(datanasc.value)
+                        navController.navigate("FreelancerSignUp")
+                    }
+                },
+                text = stringResource(id = R.string.continue_)
+            )
 
 
         }
