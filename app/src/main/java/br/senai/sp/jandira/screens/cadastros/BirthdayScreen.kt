@@ -197,7 +197,7 @@ fun BirthdayScreen(navController: NavController, freelancerViewModel: Freelancer
                             onDoneClick = {
                                 showDatePicker = false
                                 println("Done: $it")
-                                datanasc.value = "${it.dayOfMonth}/${it.monthNumber}/${it.year}"
+                                datanasc.value = it.toString()
 
                             },
                             onDismiss = {

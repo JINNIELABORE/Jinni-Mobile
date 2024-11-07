@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.screens.cadastros
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -315,7 +316,30 @@ fun FreelancerSignUp(navController: NavController, freelancerViewModel: Freelanc
 
                                 if (freelancerPassword.value == freelancerConfirmPassword.value){
 
+                                    FreelancerViewModel().setFreelancerData(freelancerName.value,freelancerEmail.value ,freelancerCpf.value, freelancerPassword.value)
+                                    val freelancer = FreelancerViewModel().freelancerData.value
+                                    val freelancerService = retrofitFactory.createFreelancerService()
 
+                                    freelancerService.postFreelancer(freelancer).enqueue(object : Callback<Freelancer> {
+
+                                        override fun onResponse(
+                                            call: Call<Freelancer>,
+                                            response: Response<Freelancer>
+                                        ) {
+                                            Log.i("Sucesso", "Cdasttro ${freelancer}")
+                                            if (response.isSuccessful){
+                                                navController.navigate("SucessScreen")
+
+                                            }else{
+
+                                                // erro
+                                            }
+                                        }
+
+                                        override fun onFailure(p0: Call<Freelancer>, p1: Throwable) {
+
+                                        }
+                                    })
 
                                 } else{
 

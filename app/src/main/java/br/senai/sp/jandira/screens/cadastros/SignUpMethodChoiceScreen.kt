@@ -75,8 +75,8 @@ fun SignUpMethodChoiceScreen(navController: NavController) {
                         navController.navigate("ClientSignUp")
                     },
                     modifier = Modifier
-                        .height(150.dp)
-                        .width(150.dp),
+                        .height(160.dp)
+                        .width(160.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = Color.Transparent
                     ),
@@ -87,7 +87,7 @@ fun SignUpMethodChoiceScreen(navController: NavController) {
                 ) {
 
                     Column (
-                        modifier = Modifier.fillMaxSize().padding(10.dp),
+                        modifier = Modifier.fillMaxSize().padding(top = 15.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.SpaceBetween
                     ){
@@ -102,7 +102,8 @@ fun SignUpMethodChoiceScreen(navController: NavController) {
                             text = stringResource(id = R.string.client),
                             fontSize = 18.sp,
                             fontFamily = BalooTammudu,
-                            color = Color(0xff03396C)
+                            color = Color(0xff03396C),
+                            fontWeight = FontWeight.SemiBold
                         )
                     }
                 }
@@ -113,8 +114,8 @@ fun SignUpMethodChoiceScreen(navController: NavController) {
                         navController.navigate("Birthday")
                     },
                     modifier = Modifier
-                        .height(150.dp)
-                        .width(150.dp),
+                        .height(160.dp)
+                        .width(160.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = Color.Transparent
                     ),
@@ -125,7 +126,7 @@ fun SignUpMethodChoiceScreen(navController: NavController) {
                 ) {
 
                     Column (
-                        modifier = Modifier.fillMaxSize().padding(10.dp),
+                        modifier = Modifier.fillMaxSize().padding(top = 15.dp),
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.SpaceBetween
                     ){
@@ -140,7 +141,8 @@ fun SignUpMethodChoiceScreen(navController: NavController) {
                             text = stringResource(id = R.string.freelancer),
                             fontSize = 18.sp,
                             fontFamily = BalooTammudu,
-                            color = Color(0xff03396C)
+                            color = Color(0xff03396C),
+                            fontWeight = FontWeight.SemiBold
                         )
                     }
                 }
