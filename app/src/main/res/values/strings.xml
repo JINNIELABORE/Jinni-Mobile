@@ -17,8 +17,10 @@
     <string name="cnpj">CNPJ</string>
     <string name="cpf">CPF</string>
     <string name="signup_text">Don\'t have an account yet?</string>
-    <string name="projects">Projects</string>
     <string name="when_birthday">When is your birthday?</string>
     <string name="add_info">Add your informations</string>
     <string name="birthday">Birthday</string>
+    <string name="projects">projects</string>
+    <string name="home">home</string>
+    <string name="chat">chat</string>
 </resources>

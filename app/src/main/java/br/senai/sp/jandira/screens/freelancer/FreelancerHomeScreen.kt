@@ -29,8 +29,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -40,7 +42,7 @@ import br.senai.sp.jandira.ui.theme.Poppins
 
 
 @Composable
-fun FreelanceHomeScreen(navController: NavController) {
+fun FreelanceHomeScreen() {
 
     Surface(
         modifier = Modifier
@@ -57,9 +59,18 @@ fun FreelanceHomeScreen(navController: NavController) {
             Row (
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 65.dp, start = 10.dp),
+                    .background(
+                        shape = RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp),
+                        brush = Brush.linearGradient(
+                            listOf(
+                                Color(0xff03396C),
+                                Color(0xff005B96)
+                            )
+                        )
+                    )
+                    .padding(top = 65.dp, start = 20.dp, bottom = 25.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ){
 
                 Row (
@@ -70,9 +81,9 @@ fun FreelanceHomeScreen(navController: NavController) {
                             .height(40.dp)
                             .width(40.dp)
                             .clickable {
-                                navController.navigate("FreelancerProfile")
+                                //             navController.navigate("FreelancerProfile")
                             },
-                        shape = CircleShape
+                        shape = CircleShape,
                     ){
                         Image(
                             painter = painterResource(id = R.drawable.francisco),
@@ -84,27 +95,20 @@ fun FreelanceHomeScreen(navController: NavController) {
 
                     Text(
                         text = "Francisco de Almeida",
-                        fontFamily = BalooTammudu,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        style = TextStyle(
-                            brush = Brush.linearGradient(
-                                listOf(
-                                    Color(0xff011F4B),
-                                    Color(0xff005B96)
-                                )
-                            )
-                        )
+                        fontFamily = Poppins,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = Color(0xffFFFFFF)
                     )
 
                 }
 
                 Row {
                     IconButton(onClick = {}) {
-                        Icon(imageVector = Icons.Outlined.Notifications, contentDescription = "notify", tint = Color(0xff005B96))
+                        Icon(imageVector = Icons.Outlined.Notifications, contentDescription = "notify", tint = Color(0xffFFFFFF))
                     }
                     IconButton(onClick = {}) {
-                        Icon(imageVector = Icons.Outlined.FilterList, contentDescription = "filter", tint = Color(0xff005B96))
+                        Icon(imageVector = Icons.Outlined.FilterList, contentDescription = "filter", tint = Color(0xffFFFFFF))
                     }
                 }
             }
@@ -188,20 +192,12 @@ fun FreelanceHomeScreen(navController: NavController) {
             Row (
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 25.dp)
             ){
 
                 Card (
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(45.dp)
-                        .background(
-                            Brush.linearGradient(
-                                0.0f to Color(0xff03396C),
-                                1.0f to Color(0xff011F4B)
-                            ),
-                            shape = RoundedCornerShape(15.dp)
-                        ),
+                        .height(50.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = Color.Transparent
                     )
@@ -216,33 +212,47 @@ fun FreelanceHomeScreen(navController: NavController) {
                         verticalAlignment = Alignment.CenterVertically
                     ){
 
-                        Image(
-                            painter = painterResource(id = R.drawable.mala),
-                            contentDescription = "projetos",
-                            modifier = Modifier
-                                .height(25.dp)
-                                .width(25.dp)
-                                .clickable {
-                                    navController.navigate("ProjectsScreen")
-                                })
-                        Image(
-                            painter = painterResource(id = R.drawable.casa),
-                            contentDescription = "projetos",
-                            modifier = Modifier
-                                .height(25.dp)
-                                .width(25.dp)
-                                .clickable {
-                                    navController.navigate("FreelanceHomeScreen")
-                                })
-                        Image(
-                            painter = painterResource(id = R.drawable.conversa),
-                            contentDescription = "projetos",
-                            modifier = Modifier
-                                .height(25.dp)
-                                .width(25.dp)
-                                .clickable {
-                                    navController.navigate("ChatList")
-                                })
+
+                            Image(
+                                painter = painterResource(id = R.drawable.bag),
+                                contentDescription = "projetos",
+                                modifier = Modifier
+                                    .height(25.dp)
+                                    .width(25.dp)
+                                    .clickable {
+                                        //               navController.navigate("ProjectsScreen")
+                                    })
+
+
+
+                            Image(
+                                painter = painterResource(id = R.drawable.clickedhome),
+                                contentDescription = "projetos",
+                                modifier = Modifier
+                                    .height(25.dp)
+                                    .width(25.dp)
+                                    .clickable {
+                                        //               navController.navigate("FreelanceHomeScreen")
+                                    })
+
+
+
+
+                            Image(
+                                painter = painterResource(id = R.drawable.chat),
+                                contentDescription = "projetos",
+                                modifier = Modifier
+                                    .height(25.dp)
+                                    .width(25.dp)
+                                    .clickable {
+                                        //                   navController.navigate("ChatList")
+                                    })
+
+
+
+
+
+
                     }
 
                 }
@@ -253,4 +263,12 @@ fun FreelanceHomeScreen(navController: NavController) {
     }
 
 
+}
+
+
+
+@Preview (showBackground = true, showSystemUi = true)
+@Composable
+private fun Prev() {
+    FreelanceHomeScreen()
 }

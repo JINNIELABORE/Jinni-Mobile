@@ -71,7 +71,6 @@ dependencies {
 
     implementation(libs.androidx.navigation.compose.v281)
     implementation(libs.androidx.material.icons.extended.android)
-    implementation(libs.kmp.date.time.picker)
 
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
@@ -83,8 +82,7 @@ dependencies {
     implementation(libs.firebase.analytics)
 
     // date picker
-    implementation(libs.datetime.wheel.picker)
-    implementation(libs.kotlinx.datetime)
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
 
 
 }

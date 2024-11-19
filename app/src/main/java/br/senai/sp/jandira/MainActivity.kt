@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
                 val freelancerViewModel = FreelancerViewModel()
                 NavHost(
                     navController = navController,
-                    startDestination = "Birthday",
+                    startDestination = "FreelancerHome",
                 ){
 
                     composable(route = "Login") { LoginScreen(navController) }
@@ -60,7 +60,7 @@ class MainActivity : ComponentActivity() {
 
                     //FREELANCER
                     composable(route = "FreelancerProfile"){ FreelancerProfile(navController) }
-                    composable(route = "FreelancerHome"){ FreelanceHomeScreen(navController) }
+                    composable(route = "FreelancerHome"){ FreelanceHomeScreen() }
 
 
                     //CHAT

@@ -44,6 +44,7 @@ import br.senai.sp.jandira.model.Freelancer
 import br.senai.sp.jandira.model.Results
 import br.senai.sp.jandira.service.RetrofitFactory
 import br.senai.sp.jandira.ui.theme.BalooTammudu
+import br.senai.sp.jandira.ui.theme.Poppins
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -82,9 +83,18 @@ fun ClientHomeScreen() {
             Row (
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 65.dp, start = 25.dp),
+                    .background(
+                        shape = RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp),
+                        brush = Brush.linearGradient(
+                            listOf(
+                                Color(0xff03396C),
+                                Color(0xff005B96)
+                            )
+                        )
+                    )
+                    .padding(top = 65.dp, start = 20.dp, bottom = 25.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ){
 
                 Row (
@@ -93,8 +103,11 @@ fun ClientHomeScreen() {
                     Card (
                         modifier = Modifier
                             .height(40.dp)
-                            .width(40.dp),
-                        shape = CircleShape
+                            .width(40.dp)
+                            .clickable {
+                                //             navController.navigate("FreelancerProfile")
+                            },
+                        shape = CircleShape,
                     ){
                         Image(
                             painter = painterResource(id = R.drawable.francisco),
@@ -106,20 +119,20 @@ fun ClientHomeScreen() {
 
                     Text(
                         text = "Francisco de Almeida",
-                        fontFamily = BalooTammudu,
-                        fontSize = 16.sp,
+                        fontFamily = Poppins,
+                        fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
-                        color = Color(0xff011F4B)
+                        color = Color(0xffFFFFFF)
                     )
 
                 }
 
                 Row {
                     IconButton(onClick = {}) {
-                        Icon(imageVector = Icons.Outlined.Notifications, contentDescription = "notify")
+                        Icon(imageVector = Icons.Outlined.Notifications, contentDescription = "notify", tint = Color(0xffFFFFFF))
                     }
                     IconButton(onClick = {}) {
-                        Icon(imageVector = Icons.Outlined.FilterList, contentDescription = "notify")
+                        Icon(imageVector = Icons.Outlined.FilterList, contentDescription = "filter", tint = Color(0xffFFFFFF))
                     }
                 }
             }
@@ -130,8 +143,8 @@ fun ClientHomeScreen() {
                     .padding(start = 15.dp, end = 15.dp, bottom = 30.dp)
             ){
 
-                items(freelancerList){
-                    FreelancerCard(freelancer = it)
+                items(freelancerList){ freelancer ->
+                    FreelancerCard(freelancer = freelancer)
                 }
 
             }
@@ -154,20 +167,12 @@ fun ClientHomeScreen() {
             Row (
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 25.dp)
             ){
 
                 Card (
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(45.dp)
-                        .background(
-                            Brush.linearGradient(
-                                0.0f to Color(0xff03396C),
-                                1.0f to Color(0xff011F4B)
-                            ),
-                            shape = RoundedCornerShape(15.dp)
-                        ),
+                        .height(50.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = Color.Transparent
                     )
@@ -182,33 +187,47 @@ fun ClientHomeScreen() {
                         verticalAlignment = Alignment.CenterVertically
                     ){
 
+
                         Image(
-                            painter = painterResource(id = R.drawable.mala),
+                            painter = painterResource(id = R.drawable.bag),
                             contentDescription = "projetos",
                             modifier = Modifier
                                 .height(25.dp)
                                 .width(25.dp)
                                 .clickable {
-                                    //                                  navController.navigate("ProjectsScreen")
+                                    //               navController.navigate("ProjectsScreen")
                                 })
+
+
+
                         Image(
-                            painter = painterResource(id = R.drawable.casa),
+                            painter = painterResource(id = R.drawable.clickedhome),
                             contentDescription = "projetos",
                             modifier = Modifier
                                 .height(25.dp)
                                 .width(25.dp)
                                 .clickable {
-                                    //                              navController.navigate("Home")
+                                    //               navController.navigate("FreelanceHomeScreen")
                                 })
+
+
+
+
                         Image(
-                            painter = painterResource(id = R.drawable.conversa),
+                            painter = painterResource(id = R.drawable.chat),
                             contentDescription = "projetos",
                             modifier = Modifier
                                 .height(25.dp)
                                 .width(25.dp)
                                 .clickable {
-                                    //                               navController.navigate("ChatList")
+                                    //                   navController.navigate("ChatList")
                                 })
+
+
+
+
+
+
                     }
 
                 }
