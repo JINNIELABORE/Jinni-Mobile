@@ -12,7 +12,6 @@ import br.senai.sp.jandira.screens.cadastros.BirthdayScreen
 import br.senai.sp.jandira.screens.chat.ChatListScreen
 import br.senai.sp.jandira.screens.client.ClientHomeScreen
 import br.senai.sp.jandira.screens.cadastros.ClientSignUp
-import br.senai.sp.jandira.screens.cadastros.FirstPageScreen
 import br.senai.sp.jandira.screens.freelancer.FreelanceHomeScreen
 import br.senai.sp.jandira.screens.freelancer.FreelancerProfile
 import br.senai.sp.jandira.screens.cadastros.FreelancerSignUp
@@ -38,19 +37,20 @@ class MainActivity : ComponentActivity() {
                 val freelancerViewModel = FreelancerViewModel()
                 NavHost(
                     navController = navController,
-                    startDestination = "FirstPage",
+                    startDestination = "Birthday",
                 ){
-                    composable(route = "FirstPage") { FirstPageScreen(navController) }
+
+                    composable(route = "Login") { LoginScreen(navController) }
                     composable(route = "SignUpMethod") { SignUpMethodChoiceScreen(navController) }
                     composable(route = "FreelancerSignUp") { FreelancerSignUp(navController, freelancerViewModel = freelancerViewModel) }
                     composable(route = "ClientSignUp") { ClientSignUp(navController, clientViewModel = clientViewModel ) }
                     composable(route = "AddCnpj") { AddCnpj(navController , clientViewModel = clientViewModel) }
                     composable(route = "SuccessScreen") { Sucess() }
-                    composable(route = "SignIn") { LoginScreen(navController) }
+
 
                     composable(route = "ChatList"){ ChatListScreen(navController) }
                     composable(route = "ProjectsScreen"){ ProjectsScreen() }
-                    composable(route = "Birthday"){ BirthdayScreen(navController, freelancerViewModel = freelancerViewModel) }
+                    composable(route = "Birthday"){ BirthdayScreen() }
 
                     //CLIENT
                     composable(route = "ClientHome"){ ClientHomeScreen() }

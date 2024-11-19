@@ -1,5 +1,7 @@
 package br.senai.sp.jandira.screens.cadastros
 
+import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,12 +27,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -71,31 +76,21 @@ fun LoginScreen(navController: NavController) {
             modifier = Modifier.fillMaxSize()
         ){
 
-            Row (
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 65.dp, start = 10.dp)
-            ){
-                IconButton(onClick = {
-                    navController.navigate("FirstPage")
-                }) {
-                    Icon(
-                        imageVector = Icons.Outlined.ArrowBackIosNew,
-                        contentDescription = "seta",
-                        tint = Color(0xff011F4B)
-                    )
-                }
-            }
 
-            Row (
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
+            Column (
+                modifier = Modifier.fillMaxWidth().padding(top = 100.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ){
+
+                Image(
+                    painter = painterResource(id = R.drawable.genius),
+                    contentDescription = "logo")
+
                 Text(
-                    text = stringResource(id = R.string.sign_in),
-                    fontSize = 24.sp,
-                    fontFamily = Poppins,
-                    fontWeight = FontWeight.Medium,
+                    text = "Jinni",
+                    fontSize = 64.sp,
+                    fontFamily = BalooTammudu,
+                    fontWeight = FontWeight.SemiBold,
                     style = TextStyle(
                         brush = Brush.linearGradient(
                             listOf(
@@ -103,9 +98,9 @@ fun LoginScreen(navController: NavController) {
                                 Color(0xff005B96)
                             )
                         )
-                    )
-                )
+                    ))
             }
+
 
             Column (
                 modifier = Modifier.padding(horizontal = 35.dp, vertical = 30.dp)
@@ -183,13 +178,15 @@ fun LoginScreen(navController: NavController) {
                     Text(
                         text = stringResource(id = R.string.signup_text),
                         fontFamily = Poppins,
-                        fontSize = 12.sp)
+                        fontSize = 12.sp,
+                        color = Color(0xff000000))
                     Spacer(modifier = Modifier.width(5.dp))
                     Text(
                         text = stringResource(id = R.string.sign_up),
                         fontFamily = Poppins,
                         color = Color(0xff011F4B),
                         fontSize = 12.sp,
+                        fontWeight = FontWeight.Medium,
                         modifier = Modifier.clickable { navController.navigate("SignUpMethod") }
                     )
                 }
@@ -198,15 +195,18 @@ fun LoginScreen(navController: NavController) {
             Column (
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 60.dp, vertical = 35.dp),
+                    .padding(horizontal = 60.dp, vertical = 45.dp),
                 verticalArrangement = Arrangement.Bottom
             ){
 
 
                 GradientButton(onClick = {
 
+                    Log.i("entrou", email.value.toString())
+
                     if(email.value.isEmpty() || password.value.isEmpty()){
 
+                        Log.i("Erro", email.value.toString())
                     }
                     else{
 
@@ -215,10 +215,11 @@ fun LoginScreen(navController: NavController) {
                         callClient.enqueue(object : Callback<Client> {
                             override fun onResponse(p0: Call<Client>, p1: Response<Client>) {
                                 client = p1.body()!!
+                                Log.i("Entrou no cliente", p1.isSuccessful.toString())
                             }
 
                             override fun onFailure(p0: Call<Client>, p1: Throwable) {
-
+                                Log.i("Cliente erro", p1.message.toString())
                             }
                         })
 
@@ -228,18 +229,19 @@ fun LoginScreen(navController: NavController) {
                         callFreelancer.enqueue(object : Callback<Freelancer> {
                             override fun onResponse(p0: Call<Freelancer>, p1: Response<Freelancer>) {
                                 freelancer = p1.body()!!
+                                Log.i("Entrou no freelancer", p1.isSuccessful.toString())
                             }
 
                             override fun onFailure(p0: Call<Freelancer>, p1: Throwable) {
-
+                                Log.i("Freelancer erro", p1.message.toString())
                             }
 
                         })
 
                         if(client.email_cliente == email.value && client.senha_cliente == password.value){
-                            navController.navigate("ClientHome")
+//                            navController.navigate("ClientHome")
                         } else if (freelancer.email_freelancer == email.value && freelancer.senha_freelancer == password.value){
-                            navController.navigate("FreelancerHome")
+//                            navController.navigate("FreelancerHome")
                         }
 
                     }

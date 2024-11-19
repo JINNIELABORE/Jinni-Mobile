@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.senai.sp.jandira.ui.theme.BalooTammudu
+import br.senai.sp.jandira.ui.theme.Poppins
 
 @Composable
 fun GradientButton(
@@ -46,8 +47,8 @@ fun GradientButton(
         Text(
             text = text,
             color = Color(0xffFFFFFF),
-            fontFamily = BalooTammudu,
-            fontWeight = FontWeight.Normal,
+            fontFamily = Poppins,
+            fontWeight = FontWeight.Medium,
             fontSize = 18.sp)
     }
 }

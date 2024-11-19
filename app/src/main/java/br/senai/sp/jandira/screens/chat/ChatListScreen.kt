@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.screens.chat
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -31,8 +32,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -109,7 +113,7 @@ fun ChatListScreen(navController: NavController) {
             LazyColumn (
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(bottom = 35.dp)
+                    .padding(top = 25.dp, bottom = 35.dp, start = 10.dp, end = 10.dp)
             ){
 
                 items(15){
@@ -117,11 +121,12 @@ fun ChatListScreen(navController: NavController) {
                     Card (
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(80.dp)
+                            .height(100.dp)
+                            .padding(bottom = 10.dp)
                             .clickable { },
-                        shape = RoundedCornerShape(0.dp),
+                        shape = RoundedCornerShape(10.dp),
                         colors = CardDefaults.cardColors(
-                            containerColor = Color.Transparent
+                            containerColor = Color(0xffEEEEEE)
                         )
                     ){
                         Row (
@@ -135,66 +140,58 @@ fun ChatListScreen(navController: NavController) {
                                     .fillMaxHeight(),
                                 verticalArrangement = Arrangement.Center
                             ){
+
                                 Card(
-                                    modifier = Modifier
-                                        .height(60.dp)
-                                        .width(60.dp),
                                     shape = CircleShape
                                 ) {
+
                                     Image(
                                         painter = painterResource(id = R.drawable.francisco),
                                         contentDescription = "foto_perfil",
                                         modifier = Modifier
                                             .height(60.dp)
-                                            .width(60.dp))
-                                }
-
-                                Box (
-                                    modifier = Modifier
-                                        .height(60.dp)
-                                        .width(60.dp)
-                                ){
+                                            .width(60.dp)
+                                            .background(
+                                                shape = CircleShape,
+                                                color = Color.Transparent
+                                            ))
 
                                 }
+
+
+
                             }
 
                             Column(
                                 modifier = Modifier
                                     .fillMaxHeight()
-                                    .padding(start = 10.dp),
+                                    .padding(start = 15.dp),
                                 verticalArrangement = Arrangement.Center
                             ){
                                 Text(
                                     text = "Francisco de Almeida",
                                     fontSize = 18.sp,
                                     fontFamily = Poppins,
-                                    color = Color(0xff222222)
+                                    fontWeight = FontWeight.Medium,
+                                    style = TextStyle(
+                                        brush = Brush.linearGradient(
+                                            listOf(
+                                                Color(0xff011F4B),
+                                                Color(0xff005B96)
+                                            )
+                                        )
+                                    )
                                 )
                                 Text(
-                                    text = "lorem ipsum dolor amet ame romano latinus",
+                                    text = "lorem ipsum dolor amet...",
                                     fontSize = 8.sp,
                                     fontFamily = Poppins,
                                     color = Color(0xff767676),
                                     modifier = Modifier
-                                        .padding(start = 5.dp)
+                                        .padding(start = 10.dp)
                                 )
                             }
-                            Column (
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .padding(top = 20.dp),
-                                horizontalAlignment = Alignment.End
-                            ){
-                                Card (
-                                    modifier = Modifier
-                                        .height(20.dp)
-                                        .width(20.dp),
-                                    shape = CircleShape,
-                                    colors = CardDefaults.cardColors(
-                                        containerColor = Color(0xff04DB00)
-                                    )
-                                ){}
-                            }
+
 
                         }
                     }

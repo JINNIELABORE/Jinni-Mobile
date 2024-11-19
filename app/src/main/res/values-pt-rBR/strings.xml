@@ -19,7 +19,7 @@
     <string name="cpf">CPF</string>
     <string name="signup_text">Ainda não tem uma conta?</string>
     <string name="projects">Projetos</string>
-    <string name="add_birthday">Insira sua data de nascimento.</string>
+    <string name="when_birthday">Quando é o seu aniversário?</string>
     <string name="add_info">Adicione suas informações</string>
     <string name="birthday">Data de nascimento</string>
 </resources>

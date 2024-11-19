@@ -82,5 +82,9 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
 
+    // date picker
+    implementation(libs.datetime.wheel.picker)
+    implementation(libs.kotlinx.datetime)
+
 
 }
