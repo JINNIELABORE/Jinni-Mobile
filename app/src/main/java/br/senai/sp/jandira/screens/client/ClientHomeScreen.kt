@@ -84,7 +84,7 @@ fun ClientHomeScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(
-                        shape = RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp),
+                        shape = RoundedCornerShape(bottomStart = 25.dp, bottomEnd = 25.dp),
                         brush = Brush.linearGradient(
                             listOf(
                                 Color(0xff03396C),

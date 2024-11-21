@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.screens.cadastros
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -65,6 +66,8 @@ fun LoginScreen(navController: NavController) {
     var client by remember {
         mutableStateOf(Client())
     }
+
+
 
 
 
@@ -210,12 +213,15 @@ fun LoginScreen(navController: NavController) {
                     }
                     else{
 
-                        val callClient = RetrofitFactory().createClientService().getClientByEmail(email.value)
+                        val callClient = RetrofitFactory().createClientService().getClient()
 
                         callClient.enqueue(object : Callback<Client> {
                             override fun onResponse(p0: Call<Client>, p1: Response<Client>) {
                                 client = p1.body()!!
                                 Log.i("Entrou no cliente", p1.isSuccessful.toString())
+                                if(client.email_cliente == email.value && client.senha_cliente == password.value){
+                                    navController.navigate("ClientHome")
+                                }
                             }
 
                             override fun onFailure(p0: Call<Client>, p1: Throwable) {
@@ -223,13 +229,16 @@ fun LoginScreen(navController: NavController) {
                             }
                         })
 
-
                         val callFreelancer = RetrofitFactory().createFreelancerService().getFreelancerByEmail(email.value)
 
                         callFreelancer.enqueue(object : Callback<Freelancer> {
                             override fun onResponse(p0: Call<Freelancer>, p1: Response<Freelancer>) {
                                 freelancer = p1.body()!!
                                 Log.i("Entrou no freelancer", p1.isSuccessful.toString())
+                                if (freelancer.email_freelancer == email.value && freelancer.senha_freelancer == password.value){
+                                    navController.navigate("FreelancerHome")
+                                }
+
                             }
 
                             override fun onFailure(p0: Call<Freelancer>, p1: Throwable) {
@@ -238,11 +247,7 @@ fun LoginScreen(navController: NavController) {
 
                         })
 
-                        if(client.email_cliente == email.value && client.senha_cliente == password.value){
-//                            navController.navigate("ClientHome")
-                        } else if (freelancer.email_freelancer == email.value && freelancer.senha_freelancer == password.value){
-//                            navController.navigate("FreelancerHome")
-                        }
+
 
                     }
                 }, text = stringResource(id = R.string.continue_))
@@ -253,6 +258,11 @@ fun LoginScreen(navController: NavController) {
     }
 
 }
+
+
+
+
+
 
 
 

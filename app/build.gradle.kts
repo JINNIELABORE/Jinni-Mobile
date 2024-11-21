@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.firebase.database.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -80,6 +81,9 @@ dependencies {
     //firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
+    implementation(platform(libs.firebase.bom.v3280))
+    implementation(libs.firebase.inappmessaging.display)
+    implementation(libs.google.firebase.analytics)
 
     // date picker
     coreLibraryDesugaring(libs.desugar.jdk.libs)

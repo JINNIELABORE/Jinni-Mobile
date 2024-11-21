@@ -19,7 +19,7 @@ import br.senai.sp.jandira.screens.cadastros.LoginScreen
 import br.senai.sp.jandira.screens.ProjectsScreen
 import br.senai.sp.jandira.screens.cadastros.SignUpMethodChoiceScreen
 import br.senai.sp.jandira.screens.cadastros.Sucess
-import br.senai.sp.jandira.screens.chat.Chat
+import br.senai.sp.jandira.screens.chat.Chating
 import br.senai.sp.jandira.screens.client.ClientProfile
 import br.senai.sp.jandira.ui.theme.JinniTheme
 import br.senai.sp.jandira.viewmodel.ClientViewModel
@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
                 val freelancerViewModel = FreelancerViewModel()
                 NavHost(
                     navController = navController,
-                    startDestination = "FreelancerHome",
+                    startDestination = "Login",
                 ){
 
                     composable(route = "Login") { LoginScreen(navController) }
@@ -64,7 +64,7 @@ class MainActivity : ComponentActivity() {
 
 
                     //CHAT
-                    composable(route = "Chat") { Chat() }
+                    composable(route = "Chat") { Chating() }
 
 
 

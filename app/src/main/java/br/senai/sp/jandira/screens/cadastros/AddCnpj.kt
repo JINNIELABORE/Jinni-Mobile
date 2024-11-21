@@ -47,7 +47,7 @@ fun AddCnpj(navController: NavController, clientViewModel: ClientViewModel) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 65.dp, start = 10.dp)
+                    .padding(top = 30.dp, start = 10.dp)
             ) {
                 IconButton(onClick = {
                     navController.navigate("SignUpMethod")

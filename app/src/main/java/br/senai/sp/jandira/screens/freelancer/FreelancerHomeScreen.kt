@@ -24,6 +24,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
@@ -66,7 +67,7 @@ fun FreelanceHomeScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(
-                        shape = RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp),
+                        shape = RoundedCornerShape(bottomStart = 25.dp, bottomEnd = 25.dp),
                         brush = Brush.linearGradient(
                             listOf(
                                 Color(0xff03396C),
@@ -123,7 +124,7 @@ fun FreelanceHomeScreen() {
             LazyRow (
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(start = 15.dp, end = 15.dp, bottom = 45.dp, top = 10.dp),
+                    .padding(start = 10.dp,bottom = 45.dp, top = 10.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ){
 
@@ -131,7 +132,7 @@ fun FreelanceHomeScreen() {
                     Card (
                         modifier = Modifier
                             .fillMaxHeight()
-                            .width(350.dp)
+                            .width(330.dp)
                             .padding(vertical = 10.dp)
                             .background(
                                 Brush.linearGradient(

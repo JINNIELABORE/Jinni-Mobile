@@ -5,6 +5,7 @@ converterGson = "2.11.0"
 datetimeWheelPicker = "<version>"
 desugar_jdk_libs = "2.1.3"
 firebaseBom = "33.5.1"
+firebaseBomVersion = "32.8.0"
 kmpDateTimePicker = "1.0.6"
 kotlin = "1.9.0"
 coreKtx = "1.10.1"
@@ -20,6 +21,7 @@ navigationCompose = "2.8.0"
 navigationComposeVersion = "2.8.1"
 retrofit = "2.11.0"
 wheelpickercompose = "1.1.11"
+firebaseDatabaseKtx = "21.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -31,6 +33,9 @@ datetime-wheel-picker = { module = "io.github.darkokoa:datetime-wheel-picker", v
 desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-bom-v3280 = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBomVersion" }
+firebase-inappmessaging-display = { module = "com.google.firebase:firebase-inappmessaging-display" }
+google-firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -50,6 +55,7 @@ kmp-date-time-picker = { module = "network.chaintech:kmp-date-time-picker", vers
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 wheelpickercompose = { module = "com.github.commandiron:WheelPickerCompose", version.ref = "wheelpickercompose" }
+firebase-database-ktx = { group = "com.google.firebase", name = "firebase-database-ktx", version.ref = "firebaseDatabaseKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
