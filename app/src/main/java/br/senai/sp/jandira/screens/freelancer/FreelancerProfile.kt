@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -27,6 +29,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -42,7 +45,7 @@ import br.senai.sp.jandira.ui.theme.BalooTammudu
 import br.senai.sp.jandira.ui.theme.Poppins
 
 @Composable
-fun FreelancerProfile(navController: NavController) {
+fun FreelancerProfile() {
 
     Surface (
         modifier = Modifier
@@ -87,16 +90,14 @@ fun FreelancerProfile(navController: NavController) {
                 horizontalAlignment = Alignment.CenterHorizontally,
             ){
 
-                Card (
-                    modifier = Modifier
-                        .size(210.dp),
-                    shape = CircleShape
-                ){
+
                     Image(
                         painter = painterResource(id = R.drawable.francisco),
                         contentDescription = "francisco",
-                        contentScale = ContentScale.Fit)
-                }
+                        modifier = Modifier
+                            .size(150.dp)
+                            .clip(shape = CircleShape))
+
 
                 Column (
                     modifier = Modifier
@@ -107,10 +108,10 @@ fun FreelancerProfile(navController: NavController) {
 
                     Text(
                         text = "Francisco de Almeida",
-                        fontSize = 32.sp,
+                        fontSize = 24.sp,
                         fontFamily = BalooTammudu,
                         fontWeight = FontWeight.SemiBold,
-                        modifier = Modifier.height(45.dp),
+                        modifier = Modifier.height(40.dp),
                         style = TextStyle(
                             brush = Brush.linearGradient(
                                 listOf(
@@ -171,31 +172,60 @@ fun FreelancerProfile(navController: NavController) {
 
                             ) {
 
-                            Column (
+
+                            LazyColumn (
                                 modifier = Modifier
                                     .fillMaxSize()
                                     .padding(top = 20.dp, start = 40.dp, end = 40.dp),
                                 horizontalAlignment = Alignment.CenterHorizontally
+
                             ){
 
-                                Text(
-                                    text = "Sobre o Freelancer:",
-                                    fontSize = 18.sp,
-                                    fontFamily = Poppins,
-                                    fontWeight = FontWeight.Medium,
-                                    color = Color(0xffFFFFFF)
-                                )
+                                items(1){
+                                    Text(
+                                        text = "Sobre o Freelancer:",
+                                        fontSize = 18.sp,
+                                        fontFamily = Poppins,
+                                        fontWeight = FontWeight.Medium,
+                                        color = Color(0xffFFFFFF)
+                                    )
 
-                                Spacer(modifier = Modifier.height(15.dp))
+                                    Spacer(modifier = Modifier.height(15.dp))
 
-                                Text(
-                                    text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut consequat enim, vitae venenatis urna. Mauris iaculis tellus orci, vitae elementum est auctor a. Vestibulum eget molestie ante. Ut consequat placerat justo et aliquet. ",
-                                    fontSize = 13.sp,
-                                    fontFamily = Poppins,
-                                    fontWeight = FontWeight.Normal,
-                                    color = Color(0xffEEEEEE)
-                                )
+                                    Text(
+                                        text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut consequat enim, vitae venenatis urna. Mauris iaculis tellus orci, vitae elementum est auctor a. Vestibulum eget molestie ante. Ut consequat placerat justo et aliquet. ",
+                                        fontSize = 13.sp,
+                                        fontFamily = Poppins,
+                                        fontWeight = FontWeight.Normal,
+                                        color = Color(0xffEEEEEE)
+                                    )
+
+                                    Spacer(modifier = Modifier.height(15.dp))
+
+                                    Text(
+                                        text = "Comentários:",
+                                        fontSize = 18.sp,
+                                        fontFamily = Poppins,
+                                        fontWeight = FontWeight.Medium,
+                                        color = Color(0xffFFFFFF)
+                                    )
+
+                                    LazyRow (
+                                        modifier = Modifier.fillMaxWidth().padding(horizontal = 25.dp)
+                                    ){
+                                        items(10){
+                                            Card (
+                                                modifier = Modifier.fillMaxWidth().height(100.dp),
+                                                colors = CardDefaults.cardColors(containerColor = Color.Red)
+                                            ){
+
+                                            }
+                                        }
+                                    }
+                                }
+
                             }
+
                         }
 
             }
@@ -209,3 +239,9 @@ fun FreelancerProfile(navController: NavController) {
 
 }
 
+@Preview
+@Composable
+private fun Prev() {
+    FreelancerProfile()
+    
+}

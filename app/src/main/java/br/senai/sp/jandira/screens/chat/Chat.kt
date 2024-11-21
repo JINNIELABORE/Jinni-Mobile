@@ -71,7 +71,7 @@ fun Chat() {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 65.dp, start = 10.dp)
+                        .padding(top = 2.dp, start = 10.dp)
                 ) {
                     IconButton(onClick = {
 //                    navController.navigate("SignUpMethod")
@@ -164,11 +164,11 @@ fun Chat() {
 
             }
 
-            Row (
+            Column (
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(bottom = 35.dp, start = 20.dp, end = 20.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalAlignment = Alignment.CenterHorizontally
             ){
 
                 OutlinedTextField(
@@ -227,7 +227,9 @@ fun Chat() {
                         containerColor = Color.Transparent
                     )
                 ) { }
+
             }
+
 
         }
 

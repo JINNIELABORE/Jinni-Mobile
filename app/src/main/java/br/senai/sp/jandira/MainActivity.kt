@@ -59,7 +59,7 @@ class MainActivity : ComponentActivity() {
 
 
                     //FREELANCER
-                    composable(route = "FreelancerProfile"){ FreelancerProfile(navController) }
+                    composable(route = "FreelancerProfile"){ FreelancerProfile() }
                     composable(route = "FreelancerHome"){ FreelanceHomeScreen() }
 
 
