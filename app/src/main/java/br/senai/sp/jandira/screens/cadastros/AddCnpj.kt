@@ -1,6 +1,8 @@
 package br.senai.sp.jandira.screens.cadastros
 
 import android.util.Log
+import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -37,6 +39,7 @@ fun AddCnpj(navController: NavController, clientViewModel: ClientViewModel) {
     var cnpj by remember { mutableStateOf("") }
     val context = LocalContext.current
     val retrofitFactory = RetrofitFactory()
+    val maxChar = 14
 
     Surface(
         modifier = Modifier.fillMaxSize()
@@ -93,7 +96,7 @@ fun AddCnpj(navController: NavController, clientViewModel: ClientViewModel) {
 
                     OutlinedTextField(
                         value = cnpj,
-                        onValueChange = { cnpj = it},
+                        onValueChange = { if(it.length <= maxChar) cnpj = it},
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 5.dp),
@@ -132,42 +135,91 @@ fun AddCnpj(navController: NavController, clientViewModel: ClientViewModel) {
                         .padding(horizontal = 60.dp)
                 ) {
 
-                    GradientButton(
-                        onClick = {
-                            if (cnpj.isNotEmpty()) {
-                                clientViewModel.addCnpj(cnpj)
-                                val client = clientViewModel.clientData.value
+                    if(cnpj.isNotEmpty() && cnpj.length == maxChar){
+                        Button(
+                            onClick = {
+                                if(cnpj.isNotEmpty()){
 
-                                // Create the service instance
-                                val clientService = retrofitFactory.createClientService()
+                                    clientViewModel.addCnpj(cnpj)
+                                    val client = clientViewModel.clientData.value
 
-                                // Perform the network call
-                                clientService.postClient(client).enqueue(object : Callback<Client> {
-                                    override fun onResponse(
-                                        call: Call<Client>,
-                                        response: Response<Client>
-                                    ) {
-                                        if (response.isSuccessful) {
-                                            // Navegue para a próxima tela
-                                            Log.i("response", response.toString())
-                                            navController.navigate("SuccessScreen")
-                                        } else {
-                                            // Trate o erro de resposta
+                                    // Create the service instance
+                                    val clientService = retrofitFactory.createClientService()
 
-                                            Log.i("response", response.toString())                                        }
-                                    }
+                                    // Perform the network call
+                                    clientService.postClient(client).enqueue(object : Callback<Client> {
+                                        override fun onResponse(
+                                            call: Call<Client>,
+                                            response: Response<Client>
+                                        ) {
+                                            if (response.isSuccessful) {
+                                                // Navegue para a próxima tela
+                                                Log.i("response", response.toString())
+                                                navController.navigate("SuccessScreen")
+                                            } else {
+                                                // Trate o erro de resposta
 
-                                    override fun onFailure(call: Call<Client>, t: Throwable) {
-                                        // Trate a falha na chamada
-                                        Log.i("response", t.toString())
-                                    }
-                                })
-                            }
-                        },
-                        text = stringResource(id = R.string.continue_)
-                    )
+                                                Log.i("response", response.toString())                                        }
+                                        }
+
+                                        override fun onFailure(call: Call<Client>, t: Throwable) {
+                                            // Trate a falha na chamada
+                                            Log.i("response", t.toString())
+                                        }
+                                    })
+
+                                }
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(45.dp)
+                                .background(
+                                    Brush.linearGradient(
+                                        0.0f to Color(0xff011F4B),
+                                        1.0f to Color(0xff03396C)
+                                    ),
+                                    shape = RoundedCornerShape(10.dp)
+                                ),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.Transparent
+                            )
+                        ) {
+                            Text(
+                                text = stringResource(id = R.string.continue_),
+                                color = Color(0xffFFFFFF),
+                                fontFamily = Poppins,
+                                fontWeight = FontWeight.Medium,
+                                fontSize = 18.sp)
+                        }
+                    }
+                    else{
+
+                        Button(
+                            onClick = {
+                                Toast.makeText(context, "Preencha o campo corretamente", Toast.LENGTH_SHORT).show()
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(45.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xffE4E4E4)
+                            ),
+                            shape = RoundedCornerShape(10.dp)
+                        ) {
+                            Text(
+                                text = stringResource(id = R.string.continue_),
+                                color = Color(0xff979797),
+                                fontFamily = Poppins,
+                                fontWeight = FontWeight.Medium,
+                                fontSize = 18.sp)
+                        }
+                    }
+
+
                 }
             }
         }
     }
 }
+
+

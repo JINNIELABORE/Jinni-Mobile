@@ -85,8 +85,7 @@ dependencies {
     implementation(libs.firebase.inappmessaging.display)
     implementation(libs.google.firebase.analytics)
 
-    // date picker
-    coreLibraryDesugaring(libs.desugar.jdk.libs)
+
 
 
 }

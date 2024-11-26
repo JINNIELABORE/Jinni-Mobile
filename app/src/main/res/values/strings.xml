@@ -23,4 +23,7 @@
     <string name="projects">projects</string>
     <string name="home">home</string>
     <string name="chat">chat</string>
+    <string name="day">Day</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
 </resources>

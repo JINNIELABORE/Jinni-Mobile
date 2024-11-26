@@ -50,7 +50,7 @@ class MainActivity : ComponentActivity() {
 
                     composable(route = "ChatList"){ ChatListScreen(navController) }
                     composable(route = "ProjectsScreen"){ ProjectsScreen() }
-                    composable(route = "Birthday"){ BirthdayScreen() }
+                    composable(route = "Birthday"){ BirthdayScreen(freelancerViewModel, navController) }
 
                     //CLIENT
                     composable(route = "ClientHome"){ ClientHomeScreen() }
