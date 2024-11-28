@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.service
 
 import br.senai.sp.jandira.model.Freelancer
+import br.senai.sp.jandira.model.ResultLogin
 import br.senai.sp.jandira.model.Results
 import retrofit2.Call
 import retrofit2.http.Body
@@ -13,6 +14,7 @@ import retrofit2.http.Query
 interface FreelancerService {
 
     @Headers("Content-Type: application/json")
+
     @POST("v1/jinni/freelancer")
     fun postFreelancer(@Body freelancer: Freelancer): Call<Freelancer>
 
@@ -20,6 +22,6 @@ interface FreelancerService {
     fun getFreelancer(): Call<Results>
 
     @GET("v1/jinni/nome/freelancer")
-    fun getFreelancerByEmail(@Query("email") email: String): Call<Freelancer>
+    fun getFreelancerByEmail(@Query("emailDigitado") emailDigitado: String): Call<ResultLogin>
 
 }

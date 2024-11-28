@@ -1,11 +1,13 @@
 package br.senai.sp.jandira.service
 
 import br.senai.sp.jandira.model.Client
+import br.senai.sp.jandira.model.ResultLogin
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ClientService {
@@ -19,6 +21,6 @@ interface ClientService {
     fun getClient(): Call<List<Client>>
 
     @GET("v1/jinni/nome/cliente")
-    fun getClientByEmail(@Query("email") email: String): Call<Client>
+    fun getClientByEmail(@Query("emailDigitado") emailDigitado: String): Call<ResultLogin>
 
 }

@@ -49,6 +49,7 @@ import br.senai.sp.jandira.R
 import br.senai.sp.jandira.components.GradientButton
 import br.senai.sp.jandira.model.Client
 import br.senai.sp.jandira.model.Freelancer
+import br.senai.sp.jandira.model.ResultLogin
 import br.senai.sp.jandira.service.RetrofitFactory
 import br.senai.sp.jandira.ui.theme.BalooTammudu
 import br.senai.sp.jandira.ui.theme.Poppins
@@ -221,13 +222,10 @@ fun LoginScreen(navController: NavController) {
                                 val callClient = RetrofitFactory().createClientService()
                                     .getClientByEmail(email.value)
 
-
-
-
-                                callClient.enqueue(object : Callback<Client> {
+                                callClient.enqueue(object : Callback<ResultLogin> {
                                     override fun onResponse(
-                                        p0: Call<Client>,
-                                        p1: Response<Client>
+                                        p0: Call<ResultLogin>,
+                                        p1: Response<ResultLogin>
                                     ) {
                                         client = p1.body()!!
                                         Log.i("Entrou no cliente", p1.isSuccessful.toString())
