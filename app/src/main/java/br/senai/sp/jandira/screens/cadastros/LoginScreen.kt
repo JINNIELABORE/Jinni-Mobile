@@ -221,7 +221,8 @@ fun LoginScreen(navController: NavController) {
                                 val callClient = RetrofitFactory().createClientService()
                                     .getClientByEmail(email.value)
 
-                                Log.i("$client", client.toString())
+
+
 
                                 callClient.enqueue(object : Callback<Client> {
                                     override fun onResponse(
@@ -230,6 +231,7 @@ fun LoginScreen(navController: NavController) {
                                     ) {
                                         client = p1.body()!!
                                         Log.i("Entrou no cliente", p1.isSuccessful.toString())
+                                        Log.i("$client", client.toString())
                                         if (client.email_cliente == email.value && client.senha_cliente == password.value) {
                                             navController.navigate("ClientHome")
                                         }
@@ -251,6 +253,7 @@ fun LoginScreen(navController: NavController) {
                                     ) {
                                         freelancer = p1.body()!!
                                         Log.i("Entrou no freelancer", p1.isSuccessful.toString())
+                                        Log.i("$freelancer", freelancer.toString())
                                         if (freelancer.email_freelancer == email.value && freelancer.senha_freelancer == password.value) {
                                             navController.navigate("FreelancerHome")
                                         }
