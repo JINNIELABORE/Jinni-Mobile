@@ -230,7 +230,7 @@ fun FreelanceHomeScreen() {
                                     Column (modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally){
                                         Image(painter = painterResource(id = R.drawable.clickedchat), contentDescription = "chat")
                                     }
-                                    
+
                                 }
                             }
                         }
@@ -327,8 +327,6 @@ fun FreelanceHomeScreen() {
 
 
 }
-
-
 
 @Preview (showBackground = true, showSystemUi = true)
 @Composable

@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.screens.cadastros
 
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -59,46 +60,22 @@ import retrofit2.Response
 
 @Composable
 fun LoginScreen(navController: NavController) {
-
-    var email = remember {
-        mutableStateOf("")
-    }
-    var password = remember {
-        mutableStateOf("")
-    }
-    var freelancer by remember {
-        mutableStateOf(Freelancer())
-    }
-    var client by remember {
-        mutableStateOf(Client())
-    }
+    var email = remember { mutableStateOf("") }
+    var password = remember { mutableStateOf("") }
+    var client by remember { mutableStateOf<ResultLogin?>(null) }
+    var freelancer by remember { mutableStateOf<Freelancer?>(null) }
+    var loginError by remember { mutableStateOf(false) }  // Controle de erro
     val context = LocalContext.current
 
-
-
-
-
-    Surface(
-        modifier = Modifier.fillMaxSize()
-    ) {
-
-        Column(
-            modifier = Modifier.fillMaxSize()
-        ) {
-
-
+    Surface(modifier = Modifier.fillMaxSize()) {
+        Column(modifier = Modifier.fillMaxSize()) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 100.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
-                Image(
-                    painter = painterResource(id = R.drawable.genius),
-                    contentDescription = "logo"
-                )
-
+                Image(painter = painterResource(id = R.drawable.genius), contentDescription = "logo")
                 Text(
                     text = "Jinni",
                     fontSize = 64.sp,
@@ -106,180 +83,93 @@ fun LoginScreen(navController: NavController) {
                     fontWeight = FontWeight.SemiBold,
                     style = TextStyle(
                         brush = Brush.linearGradient(
-                            listOf(
-                                Color(0xff011F4B),
-                                Color(0xff005B96)
-                            )
+                            listOf(Color(0xff011F4B), Color(0xff005B96))
                         )
                     )
                 )
             }
 
-
-            Column(
-                modifier = Modifier.padding(horizontal = 35.dp, vertical = 30.dp)
-            ) {
-
+            Column(modifier = Modifier.padding(horizontal = 35.dp, vertical = 30.dp)) {
+                // Campos de email e senha
                 OutlinedTextField(
                     value = email.value,
                     onValueChange = { email.value = it },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 5.dp),
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp),
                     shape = RoundedCornerShape(10.dp),
-                    placeholder = {
-                        Text(
-                            text = stringResource(id = R.string.email),
-                            color = Color(0xff222222),
-                            fontFamily = Poppins,
-                        )
-                    },
+                    placeholder = { Text(text = stringResource(id = R.string.email)) },
                     leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.Email,
-                            contentDescription = "Email",
-                            tint = Color(0xff222222)
-                        )
-                    },
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedContainerColor = Color(0xffE5E5E5),
-                        unfocusedContainerColor = Color(0xffE5E5E5),
-                        focusedBorderColor = Color(0xff000000),
-                        unfocusedBorderColor = Color.Transparent,
-                        focusedTextColor = Color(0xff222222),
-                        unfocusedTextColor = Color(0xff222222),
-                    ),
-                    maxLines = 1
+                        Icon(imageVector = Icons.Outlined.Email, contentDescription = "Email")
+                    }
                 )
 
                 OutlinedTextField(
                     value = password.value,
                     onValueChange = { password.value = it },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 5.dp),
+                    modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp),
                     shape = RoundedCornerShape(10.dp),
-                    placeholder = {
-                        Text(
-                            text = stringResource(id = R.string.password),
-                            color = Color(0xff222222),
-                            fontFamily = Poppins,
-                        )
-                    },
+                    placeholder = { Text(text = stringResource(id = R.string.password)) },
                     leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.Lock,
-                            contentDescription = "Password",
-                            tint = Color(0xff222222)
-                        )
-                    },
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedContainerColor = Color(0xffE5E5E5),
-                        unfocusedContainerColor = Color(0xffE5E5E5),
-                        focusedBorderColor = Color(0xff000000),
-                        unfocusedBorderColor = Color.Transparent,
-                        focusedTextColor = Color(0xff222222),
-                        unfocusedTextColor = Color(0xff222222),
-                    ),
-                    maxLines = 1
+                        Icon(imageVector = Icons.Outlined.Lock, contentDescription = "Password")
+                    }
                 )
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End
-                ) {
+                // Mensagem de erro
+                if (loginError) {
                     Text(
-                        text = stringResource(id = R.string.signup_text),
-                        fontFamily = Poppins,
-                        fontSize = 12.sp,
-                        color = Color(0xff000000)
-                    )
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Text(
-                        text = stringResource(id = R.string.sign_up),
-                        fontFamily = Poppins,
-                        color = Color(0xff011F4B),
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Medium,
-                        modifier = Modifier.clickable { navController.navigate("SignUpMethod") }
+                        text = "Erro ao realizar login. Tente novamente.",
+                        color = Color.Red,
+                        modifier = Modifier.padding(top = 10.dp),
+                        fontSize = 14.sp
                     )
                 }
-            }
 
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 60.dp, vertical = 45.dp),
-                verticalArrangement = Arrangement.Bottom
-            ) {
-
-                if (email.value.isNotEmpty() && password.value.isNotEmpty()) {
+                // Botão de login
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 60.dp, vertical = 45.dp),
+                    verticalArrangement = Arrangement.Bottom
+                ) {
                     Button(
                         onClick = {
                             if (email.value.isNotEmpty() && password.value.isNotEmpty()) {
+                                loginError = false  // Reseta o erro antes de iniciar o login
 
+                                // Primeira tentativa: busca por cliente
                                 val callClient = RetrofitFactory().createClientService()
                                     .getClientByEmail(email.value)
 
                                 callClient.enqueue(object : Callback<ResultLogin> {
-                                    override fun onResponse(
-                                        p0: Call<ResultLogin>,
-                                        p1: Response<ResultLogin>
-                                    ) {
-                                        client = p1.body()!!
-                                        Log.i("Entrou no cliente", p1.isSuccessful.toString())
-                                        Log.i("$client", client.toString())
-                                        if (client.email_cliente == email.value && client.senha_cliente == password.value) {
-                                            navController.navigate("ClientHome")
-                                        }
-                                    }
-
-                                    override fun onFailure(p0: Call<Client>, p1: Throwable) {
-                                        Log.i("Cliente erro", p1.message.toString())
-                                        Toast.makeText(context, "Não foi possível realizar o login", Toast.LENGTH_LONG).show()
-                                    }
-                                })
-
-                                val callFreelancer = RetrofitFactory().createFreelancerService()
-                                    .getFreelancerByEmail(email.value)
-
-                                callFreelancer.enqueue(object : Callback<Freelancer> {
-                                    override fun onResponse(
-                                        p0: Call<Freelancer>,
-                                        p1: Response<Freelancer>
-                                    ) {
-                                        freelancer = p1.body()!!
-                                        Log.i("Entrou no freelancer", p1.isSuccessful.toString())
-                                        Log.i("$freelancer", freelancer.toString())
-                                        if (freelancer.email_freelancer == email.value && freelancer.senha_freelancer == password.value) {
-                                            navController.navigate("FreelancerHome")
+                                    override fun onResponse(call: Call<ResultLogin>, response: Response<ResultLogin>) {
+                                        if (response.isSuccessful) {
+                                            val result = response.body()
+                                            if (result != null && result.nome.isNotEmpty()) {
+                                                client = result
+                                                // Verifica se o email e senha correspondem ao cliente
+                                                if (client?.nome?.first()?.email_cliente == email.value && client?.nome?.first()?.senha_cliente == password.value) {
+                                                    navController.navigate("ClientHome")
+                                                    return
+                                                }
+                                            }
                                         }
 
+                                        // Caso o cliente não seja encontrado, tenta buscar freelancer
+                                        loginAsFreelancer(email.value, password.value, navController, context)
                                     }
 
-                                    override fun onFailure(p0: Call<Freelancer>, p1: Throwable) {
-                                        Log.i("Freelancer erro", p1.message.toString())
-                                        Toast.makeText(context, "Não foi possível realizar o login", Toast.LENGTH_LONG).show()
+                                    override fun onFailure(call: Call<ResultLogin>, t: Throwable) {
+                                        Log.e("Login Error", t.message.toString())
+                                        // Caso erro ao buscar o cliente, tenta freelancer
+                                        loginAsFreelancer(email.value, password.value, navController, context)
                                     }
-
                                 })
-
                             }
                         },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(45.dp)
-                            .background(
-                                Brush.linearGradient(
-                                    0.0f to Color(0xff011F4B),
-                                    1.0f to Color(0xff03396C)
-                                ),
-                                shape = RoundedCornerShape(10.dp)
-                            ),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.Transparent
-                        )
+                        modifier = Modifier.fillMaxWidth().height(45.dp).background(
+                            Brush.linearGradient(listOf(Color(0xff011F4B), Color(0xff03396C))),
+                            shape = RoundedCornerShape(10.dp)
+                        ),
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
                     ) {
                         Text(
                             text = stringResource(id = R.string.continue_),
@@ -289,37 +179,45 @@ fun LoginScreen(navController: NavController) {
                             fontSize = 18.sp
                         )
                     }
-                } else {
+                }
+            }
+        }
+    }
+}
 
-                    Button(
-                        onClick = {
-                            Toast.makeText(context, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
-                        },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(45.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xffE4E4E4)
-                        ),
-                        shape = RoundedCornerShape(10.dp)
-                    ) {
-                        Text(
-                            text = stringResource(id = R.string.continue_),
-                            color = Color(0xff979797),
-                            fontFamily = Poppins,
-                            fontWeight = FontWeight.Medium,
-                            fontSize = 18.sp
-                        )
+// Função para tentar login como freelancer
+private fun loginAsFreelancer(email: String, password: String, navController: NavController, context: Context) {
+    val callFreelancer = RetrofitFactory().createFreelancerService()
+        .getFreelancerByEmail(email)
+
+    callFreelancer.enqueue(object : Callback<ResultLogin> {
+        override fun onResponse(call: Call<ResultLogin>, response: Response<ResultLogin>) {
+            if (response.isSuccessful) {
+                val result = response.body()
+                if (result != null && result.nome.isNotEmpty()) {
+                    if (result.nome.first().email_freelancer == email && result.nome.first().senha_freelancer == password) {
+                        // Navega para a tela do Freelancer
+                        navController.navigate("FreelancerHome")
+                    } else {
+                        // Caso o login não seja bem-sucedido
+                        Toast.makeText(context, "Email ou senha incorretos", Toast.LENGTH_LONG).show()
                     }
                 }
-
-
+            } else {
+                // Caso erro ao realizar login como freelancer
+                Toast.makeText(context, "Erro ao realizar login como freelancer", Toast.LENGTH_LONG).show()
             }
         }
 
-    }
-
+        override fun onFailure(call: Call<ResultLogin>, t: Throwable) {
+            Log.e("Freelancer Login Error", t.message.toString())
+            Toast.makeText(context, "Erro ao realizar login", Toast.LENGTH_LONG).show()
+        }
+    })
 }
+
+
+
 
 
 
